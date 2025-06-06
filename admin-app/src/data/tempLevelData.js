@@ -1,0 +1,93 @@
+import { reactive } from 'vue';
+
+export const tempLevels = reactive({
+  lowLevel: {
+    distractingItems: {
+      aboveEntrance: { items: [] },
+      insideEntrance: { items: [] },
+      aboveTVShelf: { items: [] },
+      aboveTVFurniture: { items: [] },
+      insideTVShelf: { items: [] },
+      insideTVDoor: { items: [] },
+      oppositeBookshelf: { items: [] },
+      aboveLongFurniture: { items: [] },
+      insideLongFurnitureShelf: { items: [] },
+      insideLongFurnitureDoor: { items: [] },
+      insideLongFurnitureDrawer: { items: [] },
+      aboveOppositeDrawer: { items: [] },
+      insideOppositeDrawer: { items: [] },
+      couch: { items: [] },
+      table: { items: [] },
+      chair: { items: [] },
+      sideTable: { items: [] },
+      rack: { items: [] }
+    },
+    searchItems: {
+      aboveEntrance: { items: [] },
+      insideEntrance: { items: [] },
+      aboveTVShelf: { items: [] },
+      aboveTVFurniture: { items: [] },
+      insideTVShelf: { items: [] },
+      insideTVDoor: { items: [] },
+      oppositeBookshelf: { items: [] },
+      aboveLongFurniture: { items: [] },
+      insideLongFurnitureShelf: { items: [] },
+      insideLongFurnitureDoor: { items: [] },
+      insideLongFurnitureDrawer: { items: [] },
+      aboveOppositeDrawer: { items: [] },
+      insideOppositeDrawer: { items: [] },
+      couch: { items: [] },
+      table: { items: [] },
+      chair: { items: [] },
+      sideTable: { items: [] },
+      rack: { items: [] }
+    },
+    timeMem: "10",
+    timeSearch: "120"
+  },
+  highLevel: {
+    distractingItems: {
+      aboveEntrance: { items: [] },
+      insideEntrance: { items: [] },
+      aboveTVShelf: { items: [] },
+      aboveTVFurniture: { items: [] },
+      insideTVShelf: { items: [] },
+      insideTVDoor: { items: [] },
+      oppositeBookshelf: { items: [] },
+      aboveLongFurniture: { items: [] },
+      insideLongFurnitureShelf: { items: [] },
+      insideLongFurnitureDoor: { items: [] },
+      insideLongFurnitureDrawer: { items: [] },
+      aboveOppositeDrawer: { items: [] },
+      insideOppositeDrawer: { items: [] },
+      couch: { items: [] },
+      table: { items: [] },
+      chair: { items: [] },
+      sideTable: { items: [] },
+      rack: { items: [] }
+    },
+    searchItems: {
+      aboveEntrance: { items: [] },
+      insideEntrance: { items: [] },
+      aboveTVShelf: { items: [] },
+      aboveTVFurniture: { items: [] },
+      insideTVShelf: { items: [] },
+      insideTVDoor: { items: [] },
+      oppositeBookshelf: { items: [] },
+      aboveLongFurniture: { items: [] },
+      insideLongFurnitureShelf: { items: [] },
+      insideLongFurnitureDoor: { items: [] },
+      insideLongFurnitureDrawer: { items: [] },
+      aboveOppositeDrawer: { items: [] },
+      insideOppositeDrawer: { items: [] },
+      couch: { items: [] },
+      table: { items: [] },
+      chair: { items: [] },
+      sideTable: { items: [] },
+      rack: { items: [] }
+    },
+    timeMem: "5",
+    timeSearch: "40"
+  },
+  initialized: false // para evitar sobrescribir en el onMounted
+});

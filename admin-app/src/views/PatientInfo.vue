@@ -15,7 +15,7 @@
               <strong>Nombre:</strong> {{ patient?.name }}
               {{ patient?.lastName }}
             </p>
-            <p><strong>Email:</strong> {{ patientId }}</p>
+            <p><strong>Email:</strong> {{ patient?.email }}</p>
           </div>
           <button
             class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-800"
@@ -113,8 +113,8 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { db, doc, getDoc, collection, query, where, getDocs } from "@/firebase";
-import BaseLayout from "@/components/layouts/BaseLayout.vue";
+import { rtdb } from "@/firebase";
+import { get, ref as dbRef, child } from "firebase/database";
 import itemImages from "@/data/itemImages.json";
 
 const route = useRoute();
@@ -134,72 +134,86 @@ const getImagePath = (itemName) => {
 // Fetch patient info and results
 onMounted(async () => {
   try {
-    const patientRef = doc(db, "pacientes", patientId);
-    const patientSnap = await getDoc(patientRef);
-    if (patientSnap.exists()) {
-      patient.value = patientSnap.data();
+    const patientSnapshot = await get(
+      child(dbRef(rtdb), `pacientes/${patientId}`)
+    );
+    if (patientSnapshot.exists()) {
+      patient.value = patientSnapshot.val();
+    } else {
+      console.warn("Paciente no encontrado.");
+      loading.value = false;
+      return;
     }
-    const email = patient.id;
 
-    console.log(email);
-    const resultsRef = collection(db, "results");
-    const q = query(resultsRef, where("idPatient", "==", route.query.id));
-    const querySnap = await getDocs(q);
-    playthroughs.value = querySnap.docs.map((doc) => {
-      const data = doc.data();
-      const memSet = new Set(data.memObjects || []);
-      const foundSet = new Set(data.foundObjects || []);
+    const patientEmail = patient.value.email;
+    if (!patientEmail) {
+      console.warn("El paciente no tiene un email definido.");
+      loading.value = false;
+      return;
+    }
 
-      const correctObjects = data.foundObjects.filter((obj) => memSet.has(obj));
-      const incorrectObjects = data.foundObjects.filter(
-        (obj) => !memSet.has(obj)
-      );
+    const resultsSnapshot = await get(child(dbRef(rtdb), `results`));
+    const allResults = resultsSnapshot.exists() ? resultsSnapshot.val() : {};
 
-      const precision =
-        data.memObjects?.length > 0
-          ? (correctObjects.length / data.memObjects.length) * 100
-          : 0;
+    const matchedResults = [];
 
-      const efficiency =
-        patient.value?.levelsConfig?.mediumLevel?.timeSearch > 0
-          ? ((patient.value.levelsConfig.mediumLevel.timeSearch -
-              data.searchTime) /
-              patient.value.levelsConfig.mediumLevel.timeSearch) *
-            100
-          : 0;
+    for (const [resultId, resultData] of Object.entries(allResults)) {
+      if (resultData.idPatient === patientEmail && resultData.results) {
+        for (const [_, res] of Object.entries(resultData.results)) {
+          const memSet = new Set(res.memObjects || []);
+          const foundSet = new Set(res.foundObjects || []);
 
-      const errorRate =
-        data.foundObjects?.length > 0
-          ? (incorrectObjects.length / data.foundObjects.length) * 100
-          : 0;
+          const correctObjects =
+            res.foundObjects?.filter((obj) => memSet.has(obj)) || [];
+          const incorrectObjects =
+            res.foundObjects?.filter((obj) => !memSet.has(obj)) || [];
 
-      const omissionIndex =
-        data.memObjects?.length > 0
-          ? ((data.memObjects.length - correctObjects.length) /
-              data.memObjects.length) *
-            100
-          : 0;
+          const precision = memSet.size
+            ? (correctObjects.length / memSet.size) * 100
+            : 0;
 
-      const W1 = 0.5; // precisión
-      const W2 = 0.3; // eficiencia temporal
-      const W3 = 0.2; // taza de error
+          const efficiency = patient.value?.levelsConfig?.mediumLevel
+            ?.timeSearch
+            ? ((patient.value.levelsConfig.mediumLevel.timeSearch -
+                res.searchTime) /
+                patient.value.levelsConfig.mediumLevel.timeSearch) *
+              100
+            : 0;
 
-      const generalScore = precision * W1 + efficiency * W2 - errorRate * W3;
+          const errorRate = foundSet.size
+            ? (incorrectObjects.length / foundSet.size) * 100
+            : 0;
 
-      return {
-        ...data,
-        correctObjects,
-        incorrectObjects,
-        precision: precision.toFixed(1),
-        efficiency: efficiency.toFixed(1),
-        errorRate: errorRate.toFixed(1),
-        omissionIndex: omissionIndex.toFixed(1),
-        generalScore: generalScore.toFixed(1),
-      };
-    });
+          const omissionIndex = memSet.size
+            ? ((memSet.size - correctObjects.length) / memSet.size) * 100
+            : 0;
+
+          const W1 = 0.5;
+          const W2 = 0.3;
+          const W3 = 0.2;
+
+          const generalScore =
+            precision * W1 + efficiency * W2 - errorRate * W3;
+
+          matchedResults.push({
+            ...res,
+            correctObjects,
+            incorrectObjects,
+            precision: precision.toFixed(1),
+            efficiency: efficiency.toFixed(1),
+            errorRate: errorRate.toFixed(1),
+            omissionIndex: omissionIndex.toFixed(1),
+            generalScore: generalScore.toFixed(1),
+          });
+        }
+      }
+    }
+
+    playthroughs.value = matchedResults;
     loading.value = false;
   } catch (err) {
-    console.error("Error cargando los pacientes o resultados:", err);
+    console.error("Error cargando info del paciente o resultados:", err);
+    loading.value = false;
   }
 });
 </script>

@@ -1,921 +1,589 @@
 {
-    "aboveEntrance": {
-        "name": "Sobre mueble de entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Parlante",
-            "Reloj digital",
-            "Llave de casa",
-            "Celular",
-            "Billetera",
-            "Reloj de pulsera",
-            "Maceta de ceramica",
-            "Almanaque",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Bonsai decorativo",
-            "Candelabro de dos velas",
-            "Candelabro modelo 1",
-            "Candelabro modelo 2",
-            "Candelabro modelo 3",
-            "Candelabro modelo 4",
-            "Candelabro modelo 5",
-            "Candelabro modelo 6",
-            "Candelabro modelo 7",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Escultura modelo 1",
-            "Escultura modelo 2",
-            "Plato pequeño decorativo",
-            "Reloj de arena",
-            "Portalápices",
-            "Planta modelo 1",
-            "Planta modelo 2",
-            "Planta modelo 3",
-            "Planta modelo 4",
-            "Planta modelo 5",
-            "Radio versión 1",
-            "Radio versión 2",
-            "Radio versión 3",
-            "Lámpara con base transparente",
-            "Lámpara pequeña",
-            "Jarrón de cerámica modelo 1",
-            "Jarrón de cerámica modelo 2",
-            "Jarrón de cerámica modelo 3",
-            "Jarrón decorativo negro",
-            "Jarrón decorativo beige",
-            "Jarrón decorativo grande modelo 1",
-            "Jarrón decorativo grande modelo 2",
-            "Jarrón decorativo grande modelo 3",
-            "Jarrón decorativo grande modelo 4",
-            "Jarrón decorativo grande modelo 5",
-            "Jarrón decorativo grande modelo 6",
-            "Jarrón decorativo grande modelo 7",
-            "Jarrón decorativo grande modelo 8",
-            "Jarrón decorativo grande modelo 9",
-            "Jarrón decorativo grande modelo 10",
-            "Jarrón decorativo grande modelo 11",
-            "Jarrón de porcelana modelo 1",
-            "Jarrón de porcelana modelo 2",
-            "Jarrón de porcelana modelo 3",
-            "Jarrón de porcelana modelo 4",
-            "Jarrón de porcelana modelo 5",
-            "Jarrón de madera modelo 1",
-            "Jarrón de madera modelo 2",
-            "Jarrón de madera modelo 3",
-            "Jarrón pequeño modelo 1",
-            "Jarrón pequeño modelo 2",
-            "Jarrón pequeño modelo 3",
-            "Jarrón pequeño modelo 4",
-            "Jarrón pequeño modelo 5",
-            "Jarrón pequeño modelo 6",
-            "Jarrón pequeño modelo 7",
-            "Globo terráqueo",
-            "Tocadiscos"
-        ]
+  "lowLevel": [
+    {
+      "dbId": "aboveEntrance2",
+      "number": 1,
+      "zone": "Pared de entrada",
+      "otherProp": "Arriba del mueble a la derecha"
     },
-    "insideEntrance": {
-        "name": "Dentro de cajones del mueble de entrada",
-        "lowLevel": {
-            "isValidSpawn": false,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 0
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 8
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Parlante",
-            "Billetera",
-            "Reloj de pulsera",
-            "Cámara de fotos",
-            "Auriculares",
-            "Cable",
-            "Resma de hojas",
-            "Grabadora",
-            "Control remoto",
-            "Anteojos",
-            "Agenda",
-            "Lapicera",
-            "Lápiz",
-            "Cargador de celular",
-            "Lentes de sol",
-            "Cubo Rubik",
-            "CD",
-            "Tarjeta de credito",
-            "Abrochadora",
-            "Cinta adhesiva",
-            "Cuaderno de bocetos",
-            "Mazo de cartas",
-            "Encendedor",
-            "Lupa",
-            "Linterna",
-            "Control remoto de aire",
-            "Portaplumas",
-            "Tijeras",
-            "Abrochadora modelo 2",
-            "Cinta modelo 2"
-        ]
+    {
+      "dbId": "aboveEntrance3",
+      "number": 2,
+      "zone": "Pared de entrada",
+      "otherProp": "Arriba del mueble al medio"
     },
-    "aboveTVShelf": {
-        "name": "En estante flotante sobre televisor",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 4,
-            "itemsAllowed": 4
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Reloj digital",
-            "Maceta de ceramica",
-            "Almanaque",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Bonsai decorativo",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Escultura modelo 1",
-            "Escultura modelo 2",
-            "Plato pequeño decorativo",
-            "Reloj de arena",
-            "Planta modelo 1",
-            "Planta modelo 2",
-            "Planta modelo 3",
-            "Planta modelo 4",
-            "Planta modelo 5",
-            "Radio versión 1",
-            "Radio versión 2",
-            "Radio versión 3",
-            "Jarrón de cerámica modelo 1",
-            "Jarrón de cerámica modelo 2",
-            "Jarrón de cerámica modelo 3",
-            "Jarrón decorativo negro",
-            "Jarrón decorativo beige",
-            "Jarrón decorativo grande modelo 1",
-            "Jarrón decorativo grande modelo 2",
-            "Jarrón decorativo grande modelo 3",
-            "Jarrón decorativo grande modelo 4",
-            "Jarrón decorativo grande modelo 5",
-            "Jarrón decorativo grande modelo 6",
-            "Jarrón decorativo grande modelo 7",
-            "Jarrón decorativo grande modelo 8",
-            "Jarrón decorativo grande modelo 9",
-            "Jarrón decorativo grande modelo 10",
-            "Jarrón decorativo grande modelo 11",
-            "Jarrón de porcelana modelo 1",
-            "Jarrón de porcelana modelo 2",
-            "Jarrón de porcelana modelo 3",
-            "Jarrón de porcelana modelo 4",
-            "Jarrón de porcelana modelo 5",
-            "Jarrón de madera modelo 1",
-            "Jarrón de madera modelo 2",
-            "Jarrón de madera modelo 3",
-            "Jarrón pequeño modelo 1",
-            "Jarrón pequeño modelo 2",
-            "Jarrón pequeño modelo 3",
-            "Jarrón pequeño modelo 4",
-            "Jarrón pequeño modelo 5",
-            "Jarrón pequeño modelo 6",
-            "Jarrón pequeño modelo 7",
-            "Globo terráqueo",
-            "Tocadiscos",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2"
-        ]
+    {
+      "dbId": "aboveEntrance4",
+      "number": 3,
+      "zone": "Arriba del mueble a la izquierda",
+      "otherProp": "..."
     },
-    "aboveTVFurniture": {
-        "name": "Sobre mueble del televisor",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Reloj digital",
-            "Maceta de ceramica",
-            "Almanaque",
-            "Bonsai decorativo",
-            "Billetera",
-            "Reloj de pulsera",
-            "Control remoto",
-            "Control remoto de aire",
-            "Llave de casa",
-            "Celular",
-            "Portalápices",
-            "Lámpara con base transparente",
-            "Lámpara pequeña"
-        ]
+    {
+      "dbId": "upperHookL",
+      "number": 4,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
     },
-    "insideTVShelf": {
-        "name": "En estanterías del mueble del televisor",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 12
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Reloj digital",
-            "Maceta de ceramica",
-            "Almanaque",
-            "Bonsai decorativo",
-            "Control remoto",
-            "Control remoto de aire",
-            "Portalápices",
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Plato pequeño decorativo",
-            "Radio versión 1",
-            "Radio versión 2",
-            "Radio versión 3",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2",
-            "Parlante"
-        ]
+    {
+      "dbId": "upperHookR",
+      "number": 5,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
     },
-    "insideTVDoor": {
-        "name": "Dentro de puertas del mueble del televisor",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 8
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 8
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Control remoto",
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Parlante",
-            "Cámara de fotos",
-            "Auriculares",
-            "Cable",
-            "Resma de hojas",
-            "Grabadora",
-            "Carpeta"
-        ]
+    {
+      "dbId": "lowerHookL",
+      "number": 6,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
     },
-    "oppositeBookshelf": {
-        "name": "En biblioteca alejada de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Parlante",
-            "Reloj digital",
-            "Portalápices",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Plato pequeño decorativo",
-            "Radio versión 1",
-            "Radio versión 2",
-            "Radio versión 3",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2",
-            "Libro marrón",
-            "Libro verde",
-            "Libro blanco",
-            "Libro Considered",
-            "Libro Crasim",
-            "Libro The Art of Netting",
-            "Libro The Missing Girl",
-            "Libro AiWeiWei",
-            "Libro The Art of All",
-            "Libro Basquiat",
-            "Libro Breuer",
-            "Libro Caravaggio",
-            "Libro Eames",
-            "Libro Hokusai",
-            "Libro Beatles"
-        ]
+    {
+      "dbId": "lowerHookR",
+      "number": 7,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
     },
-    "aboveLongFurniture": {
-        "name": "Sobre mueble largo alejado de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Maceta de ceramica",
-            "Almanaque",
-            "Bonsai decorativo",
-            "Billetera",
-            "Reloj de pulsera",
-            "Llave de casa",
-            "Celular",
-            "Escultura modelo 1",
-            "Escultura modelo 2",
-            "Reloj de arena",
-            "Planta modelo 1",
-            "Planta modelo 2",
-            "Planta modelo 3",
-            "Planta modelo 4",
-            "Planta modelo 5",
-            "Jarrón de cerámica modelo 1",
-            "Jarrón de cerámica modelo 2",
-            "Jarrón de cerámica modelo 3",
-            "Jarrón decorativo negro",
-            "Jarrón decorativo beige",
-            "Jarrón decorativo grande modelo 1",
-            "Jarrón decorativo grande modelo 2",
-            "Jarrón decorativo grande modelo 3",
-            "Jarrón decorativo grande modelo 4",
-            "Jarrón decorativo grande modelo 5",
-            "Jarrón decorativo grande modelo 6",
-            "Jarrón decorativo grande modelo 7",
-            "Jarrón decorativo grande modelo 8",
-            "Jarrón decorativo grande modelo 9",
-            "Jarrón decorativo grande modelo 10",
-            "Jarrón decorativo grande modelo 11",
-            "Jarrón de porcelana modelo 1",
-            "Jarrón de porcelana modelo 2",
-            "Jarrón de porcelana modelo 3",
-            "Jarrón de porcelana modelo 4",
-            "Jarrón de porcelana modelo 5",
-            "Jarrón de madera modelo 1",
-            "Jarrón de madera modelo 2",
-            "Jarrón de madera modelo 3",
-            "Jarrón pequeño modelo 1",
-            "Jarrón pequeño modelo 2",
-            "Jarrón pequeño modelo 3",
-            "Jarrón pequeño modelo 4",
-            "Jarrón pequeño modelo 5",
-            "Jarrón pequeño modelo 6",
-            "Jarrón pequeño modelo 7",
-            "Globo terráqueo",
-            "Tocadiscos",
-            "Portaplumas",
-            "Candelabro de dos velas",
-            "Candelabro modelo 1",
-            "Candelabro modelo 2",
-            "Candelabro modelo 3",
-            "Candelabro modelo 4",
-            "Candelabro modelo 5",
-            "Candelabro modelo 6",
-            "Candelabro modelo 7"
-        ]
+    {
+      "dbId": "lv1AboveTvShelfFS1",
+      "number": 8,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería flotante a la izquierda"
     },
-    "insideLongFurnitureShelf": {
-        "name": "En estanterías de mueble largo alejado de la entrada",
-        "lowLevel": {
-            "isValidSpawn": false,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 0
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 9
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Parlante",
-            "Reloj digital",
-            "Portalápices",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Plato pequeño decorativo",
-            "Radio versión 1",
-            "Radio versión 2",
-            "Radio versión 3",
-            "Maceta de ceramica",
-            "Almanaque",
-            "Bonsai decorativo",
-            "Escultura modelo 1",
-            "Escultura modelo 2",
-            "Reloj de arena",
-            "Planta modelo 1",
-            "Planta modelo 2",
-            "Planta modelo 3",
-            "Planta modelo 4",
-            "Planta modelo 5",
-            "Jarrón de cerámica modelo 1",
-            "Jarrón de cerámica modelo 2",
-            "Jarrón de cerámica modelo 3",
-            "Jarrón decorativo negro",
-            "Jarrón decorativo beige",
-            "Jarrón decorativo grande modelo 1",
-            "Jarrón decorativo grande modelo 2",
-            "Jarrón decorativo grande modelo 3",
-            "Jarrón decorativo grande modelo 4",
-            "Jarrón decorativo grande modelo 5",
-            "Jarrón decorativo grande modelo 6",
-            "Jarrón decorativo grande modelo 7",
-            "Jarrón decorativo grande modelo 8",
-            "Jarrón decorativo grande modelo 9",
-            "Jarrón decorativo grande modelo 10",
-            "Jarrón decorativo grande modelo 11",
-            "Jarrón de porcelana modelo 1",
-            "Jarrón de porcelana modelo 2",
-            "Jarrón de porcelana modelo 3",
-            "Jarrón de porcelana modelo 4",
-            "Jarrón de porcelana modelo 5",
-            "Jarrón de madera modelo 1",
-            "Jarrón de madera modelo 2",
-            "Jarrón de madera modelo 3",
-            "Jarrón pequeño modelo 1",
-            "Jarrón pequeño modelo 2",
-            "Jarrón pequeño modelo 3",
-            "Jarrón pequeño modelo 4",
-            "Jarrón pequeño modelo 5",
-            "Jarrón pequeño modelo 6",
-            "Jarrón pequeño modelo 7",
-            "Globo terráqueo",
-            "Tocadiscos",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2",
-            "Libro marrón",
-            "Libro verde",
-            "Libro blanco",
-            "Libro Considered",
-            "Libro Crasim",
-            "Libro The Art of Netting",
-            "Libro The Missing Girl",
-            "Libro AiWeiWei",
-            "Libro The Art of All",
-            "Libro Basquiat",
-            "Libro Breuer",
-            "Libro Caravaggio",
-            "Libro Eames",
-            "Libro Hokusai",
-            "Libro Beatles",
-            "Lámpara con base transparente",
-            "Lámpara pequeña"
-        ]
+    {
+      "dbId": "lv1AboveTvShelfFS2",
+      "number": 9,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería flotante al medio"
     },
-    "insideLongFurnitureDoor": {
-        "name": "Dentro de puertas de mueble largo alejado de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Cámara de fotos",
-            "Auriculares",
-            "Cable",
-            "Resma de hojas",
-            "Grabadora",
-            "Caja rectangular decorativa",
-            "Caja decorativa redonda grande",
-            "Caja decorativa redonda pequeña",
-            "Cofre",
-            "Carpeta"
-        ]
+    {
+      "dbId": "lv1AboveTvShelfFS3",
+      "number": 10,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería flotante a la derecha"
     },
-    "insideLongFurnitureDrawer": {
-        "name": "Dentro de cajones de mueble largo alejado de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Parlante",
-            "Billetera",
-            "Reloj de pulsera",
-            "Portaplumas",
-            "Control remoto",
-            "Cámara de fotos",
-            "Auriculares",
-            "Cable",
-            "Resma de hojas",
-            "Grabadora",
-            "Control remoto de aire",
-            "Anteojos",
-            "Agenda",
-            "Lapicera",
-            "Lápiz",
-            "Cargador de celular",
-            "Lentes de sol",
-            "Cubo Rubik",
-            "CD",
-            "Tarjeta de credito",
-            "Abrochadora",
-            "Cinta adhesiva",
-            "Cuaderno de bocetos",
-            "Mazo de cartas",
-            "Encendedor",
-            "Lupa",
-            "Linterna",
-            "Tijeras",
-            "Abrochadora modelo 2",
-            "Cinta modelo 2"
-        ]
+    {
+      "dbId": "lv1NextTvLeft",
+      "number": 11,
+      "zone": "Pared de la TV",
+      "otherProp": "A la izquierda del TV"
     },
-    "aboveOppositeDrawer": {
-        "name": "Sobre cajonera alejada de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Celular",
-            "Billetera",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Almanaque",
-            "Lámpara con base transparente",
-            "Lámpara pequeña",
-            "Llave de casa",
-            "Candelabro de dos velas",
-            "Candelabro modelo 1",
-            "Candelabro modelo 2",
-            "Candelabro modelo 3",
-            "Candelabro modelo 4",
-            "Candelabro modelo 5",
-            "Candelabro modelo 6",
-            "Candelabro modelo 7",
-            "Parlante",
-            "Reloj digital",
-            "Portalápices",
-            "Difusor de aromas",
-            "Difusor de aromas modelo 2",
-            "Maceta de ceramica",
-            "Bonsai decorativo",
-            "Escultura modelo 1",
-            "Escultura modelo 2",
-            "Reloj de arena",
-            "Planta modelo 1",
-            "Planta modelo 2",
-            "Planta modelo 3",
-            "Planta modelo 4",
-            "Planta modelo 5",
-            "Jarrón de cerámica modelo 1",
-            "Jarrón de cerámica modelo 2",
-            "Jarrón de cerámica modelo 3",
-            "Jarrón decorativo negro",
-            "Jarrón decorativo beige",
-            "Jarrón decorativo grande modelo 1",
-            "Jarrón decorativo grande modelo 2",
-            "Jarrón decorativo grande modelo 3",
-            "Jarrón decorativo grande modelo 4",
-            "Jarrón decorativo grande modelo 5",
-            "Jarrón decorativo grande modelo 6",
-            "Jarrón decorativo grande modelo 7",
-            "Jarrón decorativo grande modelo 8",
-            "Jarrón decorativo grande modelo 9",
-            "Jarrón decorativo grande modelo 10",
-            "Jarrón decorativo grande modelo 11",
-            "Jarrón de porcelana modelo 1",
-            "Jarrón de porcelana modelo 2",
-            "Jarrón de porcelana modelo 3",
-            "Jarrón de porcelana modelo 4",
-            "Jarrón de porcelana modelo 5",
-            "Jarrón de madera modelo 1",
-            "Jarrón de madera modelo 2",
-            "Jarrón de madera modelo 3",
-            "Jarrón pequeño modelo 1",
-            "Jarrón pequeño modelo 2",
-            "Jarrón pequeño modelo 3",
-            "Jarrón pequeño modelo 4",
-            "Jarrón pequeño modelo 5",
-            "Jarrón pequeño modelo 6",
-            "Jarrón pequeño modelo 7",
-            "Globo terráqueo",
-            "Tocadiscos"
-        ]
+    {
+      "dbId": "lv1NextTvRight",
+      "number": 12,
+      "zone": "Pared de la TV",
+      "otherProp": "A la derecha del TV"
     },
-    "insideOppositeDrawer": {
-        "name": "Dentro de cajonera alejada de la entrada",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 6
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Billetera",
-            "Parlante",
-            "Cámara de fotos",
-            "Auriculares",
-            "Cable",
-            "Resma de hojas",
-            "Grabadora",
-            "Control remoto",
-            "Control remoto de aire",
-            "Reloj de pulsera",
-            "Portaplumas",
-            "Anteojos",
-            "Agenda",
-            "Lapicera",
-            "Lápiz",
-            "Cargador de celular",
-            "Lentes de sol",
-            "Cubo Rubik",
-            "CD",
-            "Tarjeta de credito",
-            "Abrochadora",
-            "Cinta adhesiva",
-            "Cuaderno de bocetos",
-            "Mazo de cartas",
-            "Encendedor",
-            "Lupa",
-            "Linterna",
-            "Tijeras",
-            "Abrochadora modelo 2",
-            "Cinta modelo 2"
-        ]
+    {
+      "dbId": "lv1Door1Shelf1L",
+      "number": 13,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la izquierda 1"
     },
-    "couch": {
-        "name": "Sillón",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "highLevel": {
-            "isValidSpawn": false,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 0
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Control remoto",
-            "Control remoto de aire",
-            "Celular",
-            "Cojín",
-            "Almohada",
-            "Maletín verde",
-            "Almohada modelo 2"
-        ]
+    {
+      "dbId": "lv1Door1Shelf1R",
+      "number": 14,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la izquierda 2"
     },
-    "table": {
-        "name": "Mesa",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 3,
-            "itemsAllowed": 3
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Control remoto",
-            "Control remoto de aire",
-            "Celular",
-            "Billetera",
-            "Reloj de pulsera",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Fuente decorativa",
-            "Plato pequeño decorativo",
-            "Almanaque",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2",
-            "Lámpara con base transparente",
-            "Lámpara pequeña",
-            "Llave de casa",
-            "Candelabro de dos velas",
-            "Candelabro modelo 1",
-            "Candelabro modelo 2",
-            "Candelabro modelo 3",
-            "Candelabro modelo 4",
-            "Candelabro modelo 5",
-            "Candelabro modelo 6",
-            "Candelabro modelo 7",
-            "Servilletero",
-            "Taza",
-            "Vaso de café",
-            "Taza modelo 1",
-            "Taza modelo 2",
-            "Taza modelo 3",
-            "Taza modelo 4",
-            "Taza modelo 5",
-            "Taza modelo 6",
-            "Lámpara de lectura versión 1",
-            "Lámpara de lectura versión 2"
-        ]
+    {
+      "dbId": "lv1Door1Shelf2L",
+      "number": 15,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la izquierda 3"
     },
-    "chair": {
-        "name": "Sillas",
-        "lowLevel": {
-            "isValidSpawn": false,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 0
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 2,
-            "itemsAllowed": 2
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Control remoto",
-            "Control remoto de aire",
-            "Celular",
-            "Cojín",
-            "Almohada",
-            "Maletín verde",
-            "Almohada modelo 2"
-        ]
+    {
+      "dbId": "lv1Door1Shelf2R",
+      "number": 16,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la izquierda 4"
     },
-    "sideTable": {
-        "name": "Mesa pequeña",
-        "lowLevel": {
-            "isValidSpawn": false,
-            "LargeItemsAllowed": 0,
-            "itemsAllowed": 0
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 1,
-            "itemsAllowed": 1
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Control remoto",
-            "Control remoto de aire",
-            "Celular",
-            "Billetera",
-            "Reloj de pulsera",
-            "Vela decorativa modelo 1",
-            "Vela decorativa modelo 2",
-            "Vela decorativa modelo 3",
-            "Vela decorativa modelo 4",
-            "Vela decorativa modelo 5",
-            "Reloj",
-            "Almanaque",
-            "Taza con plato modelo 1",
-            "Taza con plato modelo 2",
-            "Lámpara con base transparente",
-            "Lámpara pequeña",
-            "Llave de casa",
-            "Servilletero",
-            "Taza",
-            "Vaso de café",
-            "Taza modelo 1",
-            "Taza modelo 2",
-            "Taza modelo 3",
-            "Taza modelo 4",
-            "Taza modelo 5",
-            "Taza modelo 6",
-            "Lámpara de lectura versión 1",
-            "Lámpara de lectura versión 2"
-        ]
+    {
+      "dbId": "lv1Door2Shelf1L",
+      "number": 17,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la derecha 1"
     },
-    "rack": {
-        "name": "Colgado en perchero",
-        "lowLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 4,
-            "itemsAllowed": 4
-        },
-        "highLevel": {
-            "isValidSpawn": true,
-            "LargeItemsAllowed": 4,
-            "itemsAllowed": 4
-        },
-        "largeItemList": [],
-        "smallItemList": [
-            "Mochila",
-            "Bolso",
-            "Cartera",
-            "Paraguas grande",
-            "Maletín marrón",
-            "Gorra",
-            "Estuche de paraguas",
-            "Sombrero modelo 1",
-            "Sombrero modelo 2",
-            "Sombrero modelo 3",
-            "Paraguas pequeño",
-            "Paraguas"
-        ]
+    {
+      "dbId": "lv1Door2Shelf1R",
+      "number": 18,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la derecha 2"
+    },
+    {
+      "dbId": "lv1Door2Shelf2L",
+      "number": 19,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la derecha 3"
+    },
+    {
+      "dbId": "lv1Door2Shelf2R",
+      "number": 20,
+      "zone": "Pared de la TV",
+      "otherProp": "Puerta de la derecha 4"
+    },
+    {
+      "dbId": "lv1TvShelf3L",
+      "number": 21,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 1"
+    },
+    {
+      "dbId": "lv1TvShelf2R",
+      "number": 22,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 2"
+    },
+    {
+      "dbId": "lv1TvShelf1R",
+      "number": 23,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 3"
+    },
+    {
+      "dbId": "lv1TvShelf1L",
+      "number": 24,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 4"
+    },
+    {
+      "dbId": "oppBook1R",
+      "number": 25,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la derecha"
+    },
+    {
+      "dbId": "oppBook2R",
+      "number": 26,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la derecha"
+    },
+    {
+      "dbId": "oppBook3R",
+      "number": 27,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la derecha"
+    },
+    {
+      "dbId": "oppBook1L",
+      "number": 28,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la izquierda"
+    },
+    {
+      "dbId": "oppBook2L",
+      "number": 29,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la izquierda"
+    },
+    {
+      "dbId": "oppBook3L",
+      "number": 30,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la izquierda"
+    },
+    {
+      "dbId": "aboveLongFurn1",
+      "number": 31,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo a la izquierda"
+    },
+    {
+      "dbId": "aboveLongFurn2",
+      "number": 32,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo al medio"
+    },
+    {
+      "dbId": "aboveLongFurn3",
+      "number": 33,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo a la derecha"
+    },
+    {
+      "dbId": "insideLongFurnDrawer1",
+      "number": 34,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 1"
+    },
+    {
+      "dbId": "insideLongFurnDrawer2",
+      "number": 35,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 2"
+    },
+    {
+      "dbId": "insideLongFurnDrawer3",
+      "number": 36,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 3"
+    },
+    {
+      "dbId": "insideLongFurnDoorL",
+      "number": 37,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta izquierda lado derecho del mueble"
+    },
+    {
+      "dbId": "insideLongFurnDoorR",
+      "number": 38,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta derecha lado derecho del mueble"
+    },
+    {
+      "dbId": "insideOppDrawer1L",
+      "number": 39,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de arriba a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer1R",
+      "number": 40,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de arriba a la derecha"
+    },
+    {
+      "dbId": "insideOppDrawer2L",
+      "number": 41,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón del medio a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer2R",
+      "number": 42,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón del medio a la derecha"
+    },
+    {
+      "dbId": "insideOppDrawer3L",
+      "number": 43,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de abajo a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer3R",
+      "number": 44,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de abajo a la derecha"
+    },
+    {
+      "dbId": "aboveOppDrawer",
+      "number": 45,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre la cajonera"
+    },
+    {
+      "dbId": "aboveOppDrawerShelf",
+      "number": 46,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre la estanteria"
+    },
+    {
+      "dbId": "table1",
+      "number": 1,
+      "zone": "Centro del living",
+      "otherProp": "Sobre la mesa 1"
+    },
+    {
+      "dbId": "table2",
+      "number": 2,
+      "zone": "Centro del living",
+      "otherProp": "Sobre la mesa 2"
+    },
+    {
+      "dbId": "table3",
+      "number": 3,
+      "zone": "Centro del living",
+      "otherProp": "Sobre la mesa 3"
+    },
+    {
+      "dbId": "table4",
+      "number": 4,
+      "zone": "Centro del living",
+      "otherProp": "Sobre la mesa 4"
+    },
+    {
+      "dbId": "hall1",
+      "number": 1,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall2",
+      "number": 2,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall3",
+      "number": 3,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall4",
+      "number": 4,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall5",
+      "number": 5,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall6",
+      "number": 6,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall7",
+      "number": 7,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall8",
+      "number": 8,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall9",
+      "number": 9,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall10",
+      "number": 10,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall11",
+      "number": 11,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall12",
+      "number": 12,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hallRack1",
+      "number": 13,
+      "zone": "Hall",
+      "otherProp": "Perchero arriba izquierda"
+    },
+    {
+      "dbId": "hallRack3",
+      "number": 14,
+      "zone": "Hall",
+      "otherProp": "Perchero arriba derecha"
+    },
+    {
+      "dbId": "hallRack2",
+      "number": 15,
+      "zone": "Hall",
+      "otherProp": "Perchero abajo izquierda"
+    },
+    {
+      "dbId": "hallRack4",
+      "number": 16,
+      "zone": "Hall",
+      "otherProp": "Perchero abajo derecha"
     }
+  ],
+  "highLevel": [
+    {
+      "dbId": "aboveOppDrawerShelf",
+      "number": 1,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre la estanteria"
+    },
+    {
+      "dbId": "oppBook1L",
+      "number": 2,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la izquierda"
+    },
+    {
+      "dbId": "oppBook1R",
+      "number": 3,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la derecha"
+    },
+    {
+      "dbId": "oppBook2L",
+      "number": 4,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la izquierda"
+    },
+    {
+      "dbId": "oppBook2R",
+      "number": 5,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la derecha"
+    },
+    {
+      "dbId": "oppBook3L",
+      "number": 6,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la izquierda"
+    },
+    {
+      "dbId": "oppBook3R",
+      "number": 7,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la derecha"
+    },
+    {
+      "dbId": "lv2LongFurnAboveShelves1",
+      "number": 8,
+      "zone": "Pared opuesta",
+      "otherProp": "Ariba de la estanteria grande a la izquieda"
+    },
+    {
+      "dbId": "lv2LongFurnAboveShelves2",
+      "number": 9,
+      "zone": "Pared opuesta",
+      "otherProp": "Ariba de la estanteria grande al medio"
+    },
+    {
+      "dbId": "lv2LongFurnAboveShelves3",
+      "number": 10,
+      "zone": "Pared opuesta",
+      "otherProp": "Ariba de la estanteria grande a la derecha"
+    },
+    {
+      "dbId": "lv2LongFurnHighShelf1",
+      "number": 11,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria de arriba a la izquierda"
+    },
+    {
+      "dbId": "lv2LongFurnHighShelf2",
+      "number": 12,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria de arriba al centro"
+    },
+    {
+      "dbId": "lv2LongFurnHighShelf3",
+      "number": 13,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria de arriba a la derecha"
+    },
+    {
+      "dbId": "lv2LongFurnMiddleShelf1",
+      "number": 14,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria del medio a la izquierda"
+    },
+    {
+      "dbId": "lv2LongFurnMiddleShelf2",
+      "number": 15,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria del medio al centro"
+    },
+    {
+      "dbId": "lv2LongFurnMiddleShelf3",
+      "number": 16,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria del medio a la derecha"
+    },
+    {
+      "dbId": "aboveLongFurn1",
+      "number": 17,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo a la izquierda"
+    },
+    {
+      "dbId": "aboveLongFurn2",
+      "number": 18,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo al medio"
+    },
+    {
+      "dbId": "aboveLongFurn3",
+      "number": 19,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre el mueble bajo a la derecha"
+    },
+    {
+      "dbId": "insideLongFurnDrawer1",
+      "number": 20,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 1"
+    },
+    {
+      "dbId": "insideLongFurnDrawer2",
+      "number": 21,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 2"
+    },
+    {
+      "dbId": "insideLongFurnDrawer3",
+      "number": 22,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta lado izquierdo del mueble 3"
+    },
+    {
+      "dbId": "insideLongFurnDoorL",
+      "number": 23,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta izquierda lado derecho del mueble"
+    },
+    {
+      "dbId": "insideLongFurnDoorR",
+      "number": 24,
+      "zone": "Pared opuesta",
+      "otherProp": "Puerta derecha lado derecho del mueble"
+    },
+    {
+      "dbId": "aboveOppDrawer",
+      "number": 25,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre la cajonera"
+    },
+    {
+      "dbId": "insideOppDrawer1L",
+      "number": 26,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de arriba a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer1R",
+      "number": 27,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de arriba a la derecha"
+    },
+    {
+      "dbId": "insideOppDrawer2L",
+      "number": 28,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón del medio a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer2L",
+      "number": 29,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón del medio a la derecha"
+    },
+    {
+      "dbId": "insideOppDrawer3L",
+      "number": 30,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de abajo a la izquierda"
+    },
+    {
+      "dbId": "insideOppDrawer3R",
+      "number": 31,
+      "zone": "Pared opuesta",
+      "otherProp": "Cajón de abajo a la derecha"
+    },
+    { "dbId": "", "number": 0, "zone": "", "otherProp": "" }
+  ]
 }

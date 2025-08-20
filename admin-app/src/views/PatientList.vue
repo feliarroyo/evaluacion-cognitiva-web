@@ -43,23 +43,35 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
-import {
-  db,
-  auth,
-  signOut,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  where,
-} from "@/firebase";
+import { getDatabase, ref as dbRef, get, child } from "firebase/database";
+import { auth, signOut } from "@/firebase";
 import PatientRow from "@/components/PatientRow.vue";
 import BaseLayout from "@/components/layouts/BaseLayout.vue";
-import VirtualEnvironment from "./VirtualEnvironment.vue";
 
 const patients = ref([]);
 const loading = ref(true);
+const router = useRouter();
+
+const goToSeeVirtualEnvironment = () => {
+  router.push({ name: "VirtualEnvironment" });
+};
+
+const goToNewPatient = () => {
+  router.push({ name: "NewPatient" });
+};
+
+const goToSetDefault = () => {
+  router.push({ name: "LevelSettingsPage", query: { context: "default" } });
+};
+
+const logOut = async () => {
+  try {
+    await signOut(auth);
+    router.push({ name: "Login" }); // redirect to login screen
+  } catch (error) {
+    console.error("Error signing out:", error);
+  }
+};
 
 const handleInfo = (patient) => {
   router.push({
@@ -81,70 +93,67 @@ const handleSettings = (patient) => {
   });
 };
 
-const router = useRouter();
-const goToSeeVirtualEnvironment = () =>
-  router.push({ name: "VirtualEnvironment" });
-const goToNewPatient = () => router.push({ name: "NewPatient" });
-const goToSetDefault = () =>
-  router.push({ name: "LevelSettingsPage", query: { context: "default" } });
-
-const logOut = async () => {
-  try {
-    await signOut(auth);
-    router.push({ name: "Login" }); // redirect to login screen
-  } catch (error) {
-    console.error("Error signing out:", error);
-  }
-};
-const route = useRoute();
-const message = ref(route.query.message || "");
-
 onMounted(async () => {
-  // Get current user credentials
   const currentUser = auth.currentUser;
-
-  // If needed, show message for 4 seconds
-  if (message.value) {
-    setTimeout(() => {
-      message.value = "";
-      router.replace({ query: {} });
-    }, 4000);
+  if (!currentUser) {
+    console.warn("No hay usuario logueado");
+    loading.value = false;
+    return;
   }
 
   try {
-    // Get specialist info
-    const especialistasRef = collection(db, "especialista");
-    const q = query(especialistasRef, where("mail", "==", currentUser.email));
-    const querySnapshot = await getDocs(q);
+    const database = getDatabase();
 
-    // In case there is not a logged user.
-    if (querySnapshot.empty) {
+    // 1. Buscar especialista por email en "especialistas"
+    // En RTDB no hay query para filtrar por campo,
+    // lo mejor es guardar UID de especialista al autenticar
+    // Pero si quieres buscar por email, hay que traer todos y filtrar:
+
+    const especialistasSnapshot = await get(dbRef(database, "especialista"));
+    if (!especialistasSnapshot.exists()) {
+      console.warn("No hay especialistas en base");
+      loading.value = false;
+      return;
+    }
+
+    // Buscar especialista con email matching
+    let especialistaKey = null;
+    especialistasSnapshot.forEach((childSnap) => {
+      const data = childSnap.val();
+      if (data.mail === currentUser.email) {
+        especialistaKey = childSnap.key;
+      }
+    });
+
+    if (!especialistaKey) {
       console.warn("Especialista no encontrado");
+      loading.value = false;
       return;
     }
 
-    // Get allowed patients emails
-    const specialistData = querySnapshot.docs[0].data();
-    const allowedPatientEmails = specialistData.patients || [];
-
-    if (allowedPatientEmails.length === 0) {
+    // 2. Obtener lista de pacientes (IDs)
+    const pacientesIdsSnapshot = await get(
+      dbRef(database, `especialista/${especialistaKey}/pacientes`)
+    );
+    if (!pacientesIdsSnapshot.exists()) {
       patients.value = [];
+      loading.value = false;
       return;
     }
 
-    // Get patient list using the mails
-    const patientsPromises = allowedPatientEmails.map(async (email) => {
-      const docRef = doc(db, "pacientes", email);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        return { id: docSnap.id, ...docSnap.data() };
+    const pacientesIds = Object.keys(pacientesIdsSnapshot.val());
+
+    // 3. Por cada pacienteID, obtener datos completos
+    const pacientesPromises = pacientesIds.map(async (id) => {
+      const pacienteSnap = await get(dbRef(database, `pacientes/${id}`));
+      if (pacienteSnap.exists()) {
+        return { id: pacienteSnap.key, ...pacienteSnap.val() };
       }
       return null;
     });
 
-    // Removed patients from mails not found
-    const fetchedPatients = await Promise.all(patientsPromises);
-    patients.value = fetchedPatients.filter((p) => p !== null);
+    const pacientesData = await Promise.all(pacientesPromises);
+    patients.value = pacientesData.filter((p) => p !== null);
   } catch (error) {
     console.error("Error fetching patients:", error);
   } finally {

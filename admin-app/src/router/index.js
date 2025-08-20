@@ -6,6 +6,7 @@ import LevelSettingsPage from "../views/LevelSettingsPage.vue";
 import PatientInfo from "../views/PatientInfo.vue";
 import SpawnSettingsView from "@/views/SpawnSettingsView.vue";
 import VirtualEnvironment from "@/views/VirtualEnvironment.vue";
+import SelectItems from "@/views/SelectItems.vue";
 
 const router = createRouter({
   routes: [
@@ -23,6 +24,12 @@ const router = createRouter({
       name: "SpawnSettingsView",
       component: SpawnSettingsView,
     },
+    {
+      path: "/select-items-new",
+      name: "SelectItems",
+      component: SelectItems,
+    },
+
     {
       path: "/virtual-environment",
       name: "VirtualEnvironment",

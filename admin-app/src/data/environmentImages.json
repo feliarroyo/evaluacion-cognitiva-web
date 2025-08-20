@@ -1,0 +1,7 @@
+{
+  "Pared de entrada": "src/assets/environment/entrance.png",
+  "Centro del living": "src/assets/environment/center.png",
+  "Pared opuesta": "src/assets/environment/Opposite.png",
+  "Pared de la TV": "src/assets/environment/TV-Zone.png",
+  "Hall": "src/assets/environment/TVZone.png"
+}

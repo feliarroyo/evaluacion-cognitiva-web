@@ -136,41 +136,43 @@ const goBack = () => {
 };
 
 const saveSettings = () => {
-  // Primero, obtener los objetos a buscar de todas las paredes excepto Hall
   const level = route.query.level;
   const levelSelections = selectionsByLevel[level];
   if (!levelSelections) return;
 
-  // Objetos a buscar en paredes excepto Hall
+  // 🔹 Hall: solo importa lo que está marcado como "search"
+  const hallData = levelSelections["Hall"] || {};
+  const hallSearchObjects = new Set(
+    hallData.search ? Object.values(hallData.search) : []
+  );
+
+  // 🔹 Objetos "search" en otras paredes
   const searchObjectsOtherWalls = new Set();
   for (const spawn of spawnLocations) {
     if (spawn === "Hall") continue;
     const spawnData = levelSelections[spawn];
-    if (spawnData && spawnData.search) {
+    if (!spawnData) continue;
+
+    if (spawnData.search) {
       Object.values(spawnData.search).forEach((obj) =>
         searchObjectsOtherWalls.add(obj)
       );
     }
   }
 
-  // Objetos asignados en Hall (tipo search)
-  const hallData = levelSelections["Hall"];
-  const hallSearchObjects = new Set();
-  if (hallData && hallData.search) {
-    Object.values(hallData.search).forEach((obj) => hallSearchObjects.add(obj));
-  }
-
-  // Verificar que los objetos a buscar seleccionados esten en el hall
+  // 🔹 Validación: todo objeto marcado como "search" en otra pared debe estar también en Hall
   for (const obj of searchObjectsOtherWalls) {
     if (!hallSearchObjects.has(obj)) {
       alert(
         `No puedes guardar: El objeto "${obj}" no está asignado en la pared Hall.`
       );
-      return; // No guardar
+      return; // 🚫 No guardar
     }
   }
 
-  // Si pasa la validación, guardar normalmente
+  // 🔹 Guardar en tempLevels:
+  // - searchItems ← SOLO objetos del Hall (search)
+  // - distractingItems ← objetos de las otras paredes (search + distracting)
   ["lowLevel", "highLevel"].forEach((levelKey) => {
     tempLevels[levelKey].searchItems = {};
     tempLevels[levelKey].distractingItems = {};
@@ -179,19 +181,32 @@ const saveSettings = () => {
     if (!levelSel) return;
 
     Object.entries(levelSel).forEach(([spawnName, types]) => {
-      if (types.search && Object.keys(types.search).length > 0) {
-        tempLevels[levelKey].searchItems[spawnName] = {
-          items: Object.values(types.search),
-        };
-      }
-      if (types.distracting && Object.keys(types.distracting).length > 0) {
-        tempLevels[levelKey].distractingItems[spawnName] = {
-          items: Object.values(types.distracting),
-        };
+      if (spawnName === "Hall") {
+        // Guardar solo los objetos a buscar del Hall
+        if (types.search && Object.keys(types.search).length > 0) {
+          tempLevels[levelKey].searchItems[spawnName] = {
+            items: Object.values(types.search),
+          };
+        }
+      } else {
+        // En el resto, todo va como distractores (search + distracting)
+        const allDistractors = [];
+        if (types.search) {
+          allDistractors.push(...Object.values(types.search));
+        }
+        if (types.distracting) {
+          allDistractors.push(...Object.values(types.distracting));
+        }
+        if (allDistractors.length > 0) {
+          tempLevels[levelKey].distractingItems[spawnName] = {
+            items: allDistractors,
+          };
+        }
       }
     });
   });
 
+  alert("✅ Configuración guardada con éxito");
   router.back();
 };
 </script>

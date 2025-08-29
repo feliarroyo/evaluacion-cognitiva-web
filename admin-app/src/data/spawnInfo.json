@@ -44,235 +44,229 @@
     },
     {
       "dbId": "lv1AboveTvShelfFS1",
-      "number": 8,
+      "number": 1,
       "zone": "Pared de la TV",
       "otherProp": "Estantería flotante a la izquierda"
     },
     {
       "dbId": "lv1AboveTvShelfFS2",
-      "number": 9,
+      "number": 2,
       "zone": "Pared de la TV",
       "otherProp": "Estantería flotante al medio"
     },
     {
       "dbId": "lv1AboveTvShelfFS3",
-      "number": 10,
+      "number": 3,
       "zone": "Pared de la TV",
       "otherProp": "Estantería flotante a la derecha"
     },
     {
       "dbId": "lv1NextTvLeft",
-      "number": 11,
+      "number": 4,
       "zone": "Pared de la TV",
       "otherProp": "A la izquierda del TV"
     },
     {
       "dbId": "lv1NextTvRight",
-      "number": 12,
+      "number": 5,
       "zone": "Pared de la TV",
       "otherProp": "A la derecha del TV"
     },
     {
       "dbId": "lv1Door1Shelf1L",
-      "number": 13,
+      "number": 6,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la izquierda 1"
     },
     {
       "dbId": "lv1Door1Shelf1R",
-      "number": 14,
+      "number": 7,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la izquierda 2"
     },
     {
       "dbId": "lv1Door1Shelf2L",
-      "number": 15,
+      "number": 8,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la izquierda 3"
     },
     {
       "dbId": "lv1Door1Shelf2R",
-      "number": 16,
+      "number": 9,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la izquierda 4"
     },
     {
       "dbId": "lv1Door2Shelf1L",
-      "number": 17,
+      "number": 10,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la derecha 1"
     },
     {
       "dbId": "lv1Door2Shelf1R",
-      "number": 18,
+      "number": 11,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la derecha 2"
     },
     {
       "dbId": "lv1Door2Shelf2L",
-      "number": 19,
+      "number": 12,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la derecha 3"
     },
     {
       "dbId": "lv1Door2Shelf2R",
-      "number": 20,
+      "number": 13,
       "zone": "Pared de la TV",
       "otherProp": "Puerta de la derecha 4"
     },
     {
       "dbId": "lv1TvShelf3L",
-      "number": 21,
+      "number": 16,
       "zone": "Pared de la TV",
       "otherProp": "Estantería bajo el TV 1"
     },
     {
       "dbId": "lv1TvShelf2R",
-      "number": 22,
+      "number": 17,
       "zone": "Pared de la TV",
       "otherProp": "Estantería bajo el TV 2"
     },
     {
       "dbId": "lv1TvShelf1R",
-      "number": 23,
+      "number": 15,
       "zone": "Pared de la TV",
       "otherProp": "Estantería bajo el TV 3"
     },
     {
       "dbId": "lv1TvShelf1L",
-      "number": 24,
+      "number": 14,
       "zone": "Pared de la TV",
       "otherProp": "Estantería bajo el TV 4"
     },
     {
       "dbId": "oppBook1R",
-      "number": 25,
+      "number": 7,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria arriba a la derecha"
     },
     {
       "dbId": "oppBook2R",
-      "number": 26,
+      "number": 9,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria centro a la derecha"
     },
     {
       "dbId": "oppBook3R",
-      "number": 27,
+      "number": 11,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria abajo a la derecha"
     },
     {
       "dbId": "oppBook1L",
-      "number": 28,
+      "number": 6,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria arriba a la izquierda"
     },
     {
       "dbId": "oppBook2L",
-      "number": 29,
+      "number": 8,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria centro a la izquierda"
     },
     {
       "dbId": "oppBook3L",
-      "number": 30,
+      "number": 10,
       "zone": "Pared opuesta",
       "otherProp": "Estanteria abajo a la izquierda"
     },
     {
       "dbId": "aboveLongFurn1",
-      "number": 31,
+      "number": 2,
       "zone": "Pared opuesta",
       "otherProp": "Sobre el mueble bajo a la izquierda"
     },
     {
       "dbId": "aboveLongFurn2",
-      "number": 32,
+      "number": 3,
       "zone": "Pared opuesta",
       "otherProp": "Sobre el mueble bajo al medio"
     },
     {
       "dbId": "aboveLongFurn3",
-      "number": 33,
+      "number": 4,
       "zone": "Pared opuesta",
       "otherProp": "Sobre el mueble bajo a la derecha"
     },
     {
       "dbId": "insideLongFurnDrawer1",
-      "number": 34,
+      "number": 12,
       "zone": "Pared opuesta",
       "otherProp": "Puerta lado izquierdo del mueble 1"
     },
     {
-      "dbId": "insideLongFurnDrawer2",
-      "number": 35,
+      "dbId": "insideLongFurnDrawer3",
+      "number": 13,
       "zone": "Pared opuesta",
       "otherProp": "Puerta lado izquierdo del mueble 2"
     },
     {
-      "dbId": "insideLongFurnDrawer3",
-      "number": 36,
-      "zone": "Pared opuesta",
-      "otherProp": "Puerta lado izquierdo del mueble 3"
-    },
-    {
       "dbId": "insideLongFurnDoorL",
-      "number": 37,
+      "number": 14,
       "zone": "Pared opuesta",
       "otherProp": "Puerta izquierda lado derecho del mueble"
     },
     {
       "dbId": "insideLongFurnDoorR",
-      "number": 38,
+      "number": 15,
       "zone": "Pared opuesta",
       "otherProp": "Puerta derecha lado derecho del mueble"
     },
     {
       "dbId": "insideOppDrawer1L",
-      "number": 39,
+      "number": 16,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de arriba a la izquierda"
     },
     {
       "dbId": "insideOppDrawer1R",
-      "number": 40,
+      "number": 17,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de arriba a la derecha"
     },
     {
       "dbId": "insideOppDrawer2L",
-      "number": 41,
+      "number": 18,
       "zone": "Pared opuesta",
       "otherProp": "Cajón del medio a la izquierda"
     },
     {
       "dbId": "insideOppDrawer2R",
-      "number": 42,
+      "number": 19,
       "zone": "Pared opuesta",
       "otherProp": "Cajón del medio a la derecha"
     },
     {
       "dbId": "insideOppDrawer3L",
-      "number": 43,
+      "number": 20,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de abajo a la izquierda"
     },
     {
       "dbId": "insideOppDrawer3R",
-      "number": 44,
+      "number": 21,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de abajo a la derecha"
     },
     {
       "dbId": "aboveOppDrawer",
-      "number": 45,
+      "number": 5,
       "zone": "Pared opuesta",
       "otherProp": "Sobre la cajonera"
     },
     {
       "dbId": "aboveOppDrawerShelf",
-      "number": 46,
+      "number": 1,
       "zone": "Pared opuesta",
       "otherProp": "Sobre la estanteria"
     },
@@ -519,71 +513,358 @@
       "otherProp": "Puerta lado izquierdo del mueble 1"
     },
     {
-      "dbId": "insideLongFurnDrawer2",
-      "number": 21,
-      "zone": "Pared opuesta",
-      "otherProp": "Puerta lado izquierdo del mueble 2"
-    },
-    {
       "dbId": "insideLongFurnDrawer3",
-      "number": 22,
+      "number": 21,
       "zone": "Pared opuesta",
       "otherProp": "Puerta lado izquierdo del mueble 3"
     },
     {
       "dbId": "insideLongFurnDoorL",
-      "number": 23,
+      "number": 22,
       "zone": "Pared opuesta",
       "otherProp": "Puerta izquierda lado derecho del mueble"
     },
     {
       "dbId": "insideLongFurnDoorR",
-      "number": 24,
+      "number": 23,
       "zone": "Pared opuesta",
       "otherProp": "Puerta derecha lado derecho del mueble"
     },
     {
       "dbId": "aboveOppDrawer",
-      "number": 25,
+      "number": 24,
       "zone": "Pared opuesta",
       "otherProp": "Sobre la cajonera"
     },
     {
       "dbId": "insideOppDrawer1L",
-      "number": 26,
+      "number": 25,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de arriba a la izquierda"
     },
     {
       "dbId": "insideOppDrawer1R",
-      "number": 27,
+      "number": 26,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de arriba a la derecha"
     },
     {
       "dbId": "insideOppDrawer2L",
-      "number": 28,
+      "number": 27,
       "zone": "Pared opuesta",
       "otherProp": "Cajón del medio a la izquierda"
     },
     {
-      "dbId": "insideOppDrawer2L",
-      "number": 29,
+      "dbId": "insideOppDrawer2R",
+      "number": 28,
       "zone": "Pared opuesta",
       "otherProp": "Cajón del medio a la derecha"
     },
     {
       "dbId": "insideOppDrawer3L",
-      "number": 30,
+      "number": 29,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de abajo a la izquierda"
     },
     {
       "dbId": "insideOppDrawer3R",
-      "number": 31,
+      "number": 30,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de abajo a la derecha"
     },
-    { "dbId": "", "number": 0, "zone": "", "otherProp": "" }
+    {
+      "dbId": "aboveEntrance3",
+      "number": 1,
+      "zone": "Pared de entrada",
+      "otherProp": "Arriba del mueble al medio"
+    },
+    {
+      "dbId": "lv2EntranceDrawer1L",
+      "number": 2,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer1R",
+      "number": 3,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer2L",
+      "number": 4,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer2R",
+      "number": 5,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer3L",
+      "number": 6,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer3R",
+      "number": 7,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer4L",
+      "number": 8,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2EntranceDrawer4R",
+      "number": 9,
+      "zone": "Pared de entrada",
+      "otherProp": ""
+    },
+    {
+      "dbId": "upperHookL",
+      "number": 10,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
+    },
+    {
+      "dbId": "upperHookR",
+      "number": 11,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
+    },
+    {
+      "dbId": "lowerHookL",
+      "number": 12,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
+    },
+    {
+      "dbId": "lowerHookR",
+      "number": 13,
+      "zone": "Pared de entrada",
+      "otherProp": "Perchero"
+    },
+    {
+      "dbId": "lv2AboveTvShelfFS1",
+      "number": 1,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2AboveTvShelfFS2",
+      "number": 2,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2AboveTvShelfFS3",
+      "number": 3,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2AboveTvShelfFS4",
+      "number": 4,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2NextTvLeft",
+      "number": 5,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2NextTvRight",
+      "number": 6,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door1Shelf1L",
+      "number": 7,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door1Shelf1R",
+      "number": 8,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door1Shelf2L",
+      "number": 9,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door1Shelf2R",
+      "number": 10,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door2Shelf1L",
+      "number": 11,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door2Shelf1R",
+      "number": 12,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door2Shelf2L",
+      "number": 13,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2Door2Shelf2R",
+      "number": 14,
+      "zone": "Pared de la TV",
+      "otherProp": ""
+    },
+    { "dbId": "", "number": 15, "zone": "Pared de la TV", "otherProp": "" },
+    { "dbId": "", "number": 16, "zone": "Pared de la TV", "otherProp": "" },
+    { "dbId": "", "number": 17, "zone": "Pared de la TV", "otherProp": "" },
+    { "dbId": "", "number": 18, "zone": "Pared de la TV", "otherProp": "" },
+    { "dbId": "", "number": 19, "zone": "Pared de la TV", "otherProp": "" },
+    { "dbId": "", "number": 20, "zone": "Pared de la TV", "otherProp": "" },
+    {
+      "dbId": "lv2SideTable",
+      "number": 1,
+      "zone": "Centro del living",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2table1",
+      "number": 2,
+      "zone": "Centro del living",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2table2",
+      "number": 3,
+      "zone": "Centro del living",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2table3",
+      "number": 4,
+      "zone": "Centro del living",
+      "otherProp": ""
+    },
+    {
+      "dbId": "lv2table4",
+      "number": 5,
+      "zone": "Centro del living",
+      "otherProp": ""
+    },
+    {
+      "dbId": "hall1",
+      "number": 1,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall2",
+      "number": 2,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall3",
+      "number": 3,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall4",
+      "number": 4,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall5",
+      "number": 5,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall6",
+      "number": 6,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall7",
+      "number": 7,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall8",
+      "number": 8,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall9",
+      "number": 9,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall10",
+      "number": 10,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall11",
+      "number": 11,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hall12",
+      "number": 12,
+      "zone": "Hall",
+      "otherProp": "..."
+    },
+    {
+      "dbId": "hallRack1",
+      "number": 13,
+      "zone": "Hall",
+      "otherProp": "Perchero arriba izquierda"
+    },
+    {
+      "dbId": "hallRack3",
+      "number": 14,
+      "zone": "Hall",
+      "otherProp": "Perchero arriba derecha"
+    },
+    {
+      "dbId": "hallRack2",
+      "number": 15,
+      "zone": "Hall",
+      "otherProp": "Perchero abajo izquierda"
+    },
+    {
+      "dbId": "hallRack4",
+      "number": 16,
+      "zone": "Hall",
+      "otherProp": "Perchero abajo derecha"
+    }
   ]
 }

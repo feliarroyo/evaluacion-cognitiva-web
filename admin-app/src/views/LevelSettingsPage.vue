@@ -129,29 +129,34 @@ const syncSelectionsToTempLevels = () => {
 
     for (const spawnName in levelSelections) {
       const spawnData = levelSelections[spawnName];
+      if (!spawnData) continue;
 
-      // Obtener el spawnInfo correspondiente según zone
-      const spawnInfo = spawnInfoData[levelKey]?.find(
-        (s) => s.zone === spawnName
-      );
-      if (!spawnInfo) continue; // Si no existe el spawnInfo, saltar
-
-      const dbId = spawnInfo.dbId;
-      if (!dbId) continue; // Si dbId no está definido, saltar
-
-      // Validar y asignar item de búsqueda
-      if (spawnData.search) {
-        const itemName = Object.values(spawnData.search)[0];
-        if (itemName !== undefined && itemName !== null) {
-          tempLevels[levelKey].searchItems[dbId] = itemName;
+      if (spawnName === "Hall") {
+        // 🔹 El Hall: solo los "search" van a searchItems
+        if (spawnData.search) {
+          Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
+            if (itemName) {
+              tempLevels[levelKey].searchItems[spawnId] = itemName;
+            }
+          });
         }
-      }
-
-      // Validar y asignar item distractor
-      if (spawnData.distracting) {
-        const itemName = Object.values(spawnData.distracting)[0];
-        if (itemName !== undefined && itemName !== null) {
-          tempLevels[levelKey].distractingItems[dbId] = itemName;
+      } else {
+        // 🔹 Otras paredes: todo va como distractor (search + distracting)
+        if (spawnData.search) {
+          Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
+            if (itemName) {
+              tempLevels[levelKey].distractingItems[spawnId] = itemName;
+            }
+          });
+        }
+        if (spawnData.distracting) {
+          Object.entries(spawnData.distracting).forEach(
+            ([spawnId, itemName]) => {
+              if (itemName) {
+                tempLevels[levelKey].distractingItems[spawnId] = itemName;
+              }
+            }
+          );
         }
       }
     }

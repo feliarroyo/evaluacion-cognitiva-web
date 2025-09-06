@@ -56,6 +56,7 @@ defineProps({
 const countItems = (items) => {
   let value = 0;
   for (const location in items) {
+    console.log(location);
     value += items[location]?.items?.length || 0;
   }
   return value;

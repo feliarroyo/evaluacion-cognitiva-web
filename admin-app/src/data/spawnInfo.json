@@ -121,6 +121,18 @@
       "otherProp": "Puerta de la derecha 4"
     },
     {
+      "dbId": "lv1TvShelf1L",
+      "number": 14,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 4"
+    },
+    {
+      "dbId": "lv1TvShelf1R",
+      "number": 15,
+      "zone": "Pared de la TV",
+      "otherProp": "Estantería bajo el TV 3"
+    },
+    {
       "dbId": "lv1TvShelf3L",
       "number": 16,
       "zone": "Pared de la TV",
@@ -133,52 +145,10 @@
       "otherProp": "Estantería bajo el TV 2"
     },
     {
-      "dbId": "lv1TvShelf1R",
-      "number": 15,
-      "zone": "Pared de la TV",
-      "otherProp": "Estantería bajo el TV 3"
-    },
-    {
-      "dbId": "lv1TvShelf1L",
-      "number": 14,
-      "zone": "Pared de la TV",
-      "otherProp": "Estantería bajo el TV 4"
-    },
-    {
-      "dbId": "oppBook1R",
-      "number": 7,
+      "dbId": "aboveOppDrawerShelf",
+      "number": 1,
       "zone": "Pared opuesta",
-      "otherProp": "Estanteria arriba a la derecha"
-    },
-    {
-      "dbId": "oppBook2R",
-      "number": 9,
-      "zone": "Pared opuesta",
-      "otherProp": "Estanteria centro a la derecha"
-    },
-    {
-      "dbId": "oppBook3R",
-      "number": 11,
-      "zone": "Pared opuesta",
-      "otherProp": "Estanteria abajo a la derecha"
-    },
-    {
-      "dbId": "oppBook1L",
-      "number": 6,
-      "zone": "Pared opuesta",
-      "otherProp": "Estanteria arriba a la izquierda"
-    },
-    {
-      "dbId": "oppBook2L",
-      "number": 8,
-      "zone": "Pared opuesta",
-      "otherProp": "Estanteria centro a la izquierda"
-    },
-    {
-      "dbId": "oppBook3L",
-      "number": 10,
-      "zone": "Pared opuesta",
-      "otherProp": "Estanteria abajo a la izquierda"
+      "otherProp": "Sobre la estanteria"
     },
     {
       "dbId": "aboveLongFurn1",
@@ -197,6 +167,48 @@
       "number": 4,
       "zone": "Pared opuesta",
       "otherProp": "Sobre el mueble bajo a la derecha"
+    },
+    {
+      "dbId": "aboveOppDrawer",
+      "number": 5,
+      "zone": "Pared opuesta",
+      "otherProp": "Sobre la cajonera"
+    },
+    {
+      "dbId": "oppBook1L",
+      "number": 6,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la izquierda"
+    },
+    {
+      "dbId": "oppBook1R",
+      "number": 7,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria arriba a la derecha"
+    },
+    {
+      "dbId": "oppBook2L",
+      "number": 8,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la izquierda"
+    },
+    {
+      "dbId": "oppBook2R",
+      "number": 9,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria centro a la derecha"
+    },
+    {
+      "dbId": "oppBook3L",
+      "number": 10,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la izquierda"
+    },
+    {
+      "dbId": "oppBook3R",
+      "number": 11,
+      "zone": "Pared opuesta",
+      "otherProp": "Estanteria abajo a la derecha"
     },
     {
       "dbId": "insideLongFurnDrawer1",
@@ -257,18 +269,6 @@
       "number": 21,
       "zone": "Pared opuesta",
       "otherProp": "Cajón de abajo a la derecha"
-    },
-    {
-      "dbId": "aboveOppDrawer",
-      "number": 5,
-      "zone": "Pared opuesta",
-      "otherProp": "Sobre la cajonera"
-    },
-    {
-      "dbId": "aboveOppDrawerShelf",
-      "number": 1,
-      "zone": "Pared opuesta",
-      "otherProp": "Sobre la estanteria"
     },
     {
       "dbId": "table1",

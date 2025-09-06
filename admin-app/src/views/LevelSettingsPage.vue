@@ -38,19 +38,17 @@
 import { ref, onMounted, computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { rtdb, auth } from "@/firebase";
-import { ref as dbRef, child, get, set, update } from "firebase/database";
+import { ref as dbRef, child, get, update } from "firebase/database";
 import LevelSettings from "@/components/LevelSettings.vue";
 import { tempLevels } from "@/data/tempLevelData.js";
 import { useSelections } from "@/composables/useSelections";
-import spawnInfoData from "@/data/spawnInfo.json";
 
 const route = useRoute();
 const router = useRouter();
 const useDefaultConfig = ref(false);
 const { selectionsByLevel, resetAllSelections } = useSelections();
 
-//console.log("UPDATED CONFIG IS " + (updatedConfig !== null)? updatedConfig.value : "NULL");
-const context = route.query.context || "patient"; // 'patient' o 'default'
+const context = route.query.context || "patient";
 const patientId = route.query.id || null;
 const patientName = route.query.name || "";
 
@@ -81,6 +79,27 @@ async function getEspecialistaIdByEmail(email) {
   throw new Error("Especialista no encontrado");
 }
 
+async function loadDefaultConfigFromEspecialista() {
+  const email = auth.currentUser?.email;
+  if (!email) throw new Error("Usuario no autenticado");
+
+  const especialistaId = await getEspecialistaIdByEmail(email);
+  const snapshot = await get(
+    child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
+  );
+
+  if (snapshot.exists()) {
+    const levelsConfig = snapshot.val();
+    tempLevels.lowLevel = levelsConfig.lowLevel || { ...defaultLevelStructure };
+    tempLevels.highLevel = levelsConfig.highLevel || {
+      ...defaultLevelStructure,
+    };
+  } else {
+    tempLevels.lowLevel = { ...defaultLevelStructure };
+    tempLevels.highLevel = { ...defaultLevelStructure };
+  }
+}
+
 onMounted(async () => {
   try {
     if (!tempLevels.initialized) {
@@ -91,7 +110,6 @@ onMounted(async () => {
         if (!email) throw new Error("Usuario no autenticado");
 
         const especialistaId = await getEspecialistaIdByEmail(email);
-
         path = `especialista/${especialistaId}`;
       } else {
         path = `pacientes/${patientId}`;
@@ -101,14 +119,19 @@ onMounted(async () => {
 
       if (snapshot.exists()) {
         const data = snapshot.val();
-        useDefaultConfig.value = data.usesDefault ?? true;
-        const levelsConfig = data.levelsConfig || {};
-        tempLevels.lowLevel = levelsConfig.lowLevel || {
-          ...defaultLevelStructure,
-        };
-        tempLevels.highLevel = levelsConfig.highLevel || {
-          ...defaultLevelStructure,
-        };
+        useDefaultConfig.value = data.usesDefault ?? false;
+
+        if (useDefaultConfig.value && context !== "default") {
+          await loadDefaultConfigFromEspecialista();
+        } else {
+          const levelsConfig = data.levelsConfig || {};
+          tempLevels.lowLevel = levelsConfig.lowLevel || {
+            ...defaultLevelStructure,
+          };
+          tempLevels.highLevel = levelsConfig.highLevel || {
+            ...defaultLevelStructure,
+          };
+        }
       } else {
         tempLevels.lowLevel = { ...defaultLevelStructure };
         tempLevels.highLevel = { ...defaultLevelStructure };
@@ -132,7 +155,6 @@ const syncSelectionsToTempLevels = () => {
       if (!spawnData) continue;
 
       if (spawnName === "Hall") {
-        // 🔹 El Hall: solo los "search" van a searchItems
         if (spawnData.search) {
           Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
             if (itemName) {
@@ -141,7 +163,6 @@ const syncSelectionsToTempLevels = () => {
           });
         }
       } else {
-        // 🔹 Otras paredes: todo va como distractor (search + distracting)
         if (spawnData.search) {
           Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
             if (itemName) {
@@ -165,19 +186,10 @@ const syncSelectionsToTempLevels = () => {
 
 const guardar = async () => {
   try {
-    syncSelectionsToTempLevels();
-
-    const newLevelsConfig = {
+    let newLevelsConfig = {
       lowLevel: tempLevels.lowLevel,
       highLevel: tempLevels.highLevel,
     };
-    // const config = {
-    //   levelsConfig: {
-    //     lowLevel: tempLevels.lowLevel,
-    //     highLevel: tempLevels.highLevel,
-    //   },
-    //   usesDefault: useDefaultConfig.value,
-    // };
 
     let path = "";
 
@@ -186,15 +198,37 @@ const guardar = async () => {
       if (!email) throw new Error("Usuario no autenticado");
 
       const especialistaId = await getEspecialistaIdByEmail(email);
-      console.log(especialistaId);
-      path = `especialista/${especialistaId}/levelsConfig`;
+      path = `especialista/${especialistaId}`;
     } else {
-      path = `pacientes/${patientId}/levelsConfig`;
+      path = `pacientes/${patientId}`;
+
+      if (useDefaultConfig.value) {
+        // 🔹 Si se marcó usar config por defecto, sobrescribimos con la del especialista
+        const email = auth.currentUser?.email;
+        if (!email) throw new Error("Usuario no autenticado");
+
+        const especialistaId = await getEspecialistaIdByEmail(email);
+        const snapshot = await get(
+          child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
+        );
+
+        if (snapshot.exists()) {
+          newLevelsConfig = snapshot.val();
+        }
+      } else {
+        syncSelectionsToTempLevels();
+        newLevelsConfig = {
+          lowLevel: tempLevels.lowLevel,
+          highLevel: tempLevels.highLevel,
+        };
+      }
     }
 
-    await update(dbRef(rtdb, path), newLevelsConfig);
+    await update(dbRef(rtdb, path), {
+      levelsConfig: newLevelsConfig,
+      usesDefault: useDefaultConfig.value,
+    });
 
-    // Clear temp data
     tempLevels.initialized = false;
 
     router.push({

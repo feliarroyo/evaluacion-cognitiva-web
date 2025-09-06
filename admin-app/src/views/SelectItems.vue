@@ -1,112 +1,61 @@
 <template>
   <div class="max-w-6xl mx-auto p-6">
-    <h1 class="text-4xl font-bold text-center mb-8">
+    <h1 class="text-2xl font-bold text-center mb-8">
       Añadir objetos para el nivel de complejidad {{ complexityText }}
     </h1>
 
-    <div class="flex gap-8">
-      <div class="w-1/2 flex flex-col">
-        <img
-          :src="wallImage"
-          alt="Imagen de la pared"
-          class="w-full h-auto object-contain"
-          style="max-height: 500px"
-        />
-        <div style="margin-top: 2rem">
-          <h3 class="font-semibold mb-2">Objetos seleccionados:</h3>
-          <div
-            v-if="Object.keys(selections).length === 0"
-            class="text-gray-500"
-          >
-            No has seleccionado ningún objeto
-          </div>
-          <ul v-else>
-            <li
-              v-for="(obj, spawnId) in selections"
-              :key="spawnId"
-              class="mb-2 flex items-center gap-4"
-            >
-              <img
-                :src="getItemImage(obj)"
-                alt="Imagen item"
-                class="w-8 h-8 object-contain"
-              />
-              <span>
-                Spawn {{ getSpawnNumber(spawnId) }}:
-                <strong>{{ obj }}</strong>
-              </span>
-              <button
-                @click="removeSelection(spawnId)"
-                class="ml-auto text-red-600 hover:underline"
-                title="Eliminar selección"
-              >
-                ✖
-              </button>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="w-1/2 flex flex-col justify-between">
+    <div class="grid grid-cols-2 gap-10">
+      <!-- LEFT COLUMN -->
+      <div class="flex flex-col justify-between h-full">
         <div>
-          <h2 class="text-3xl font-semibold mb-2">{{ spawnZone }}</h2>
-          <p class="text-lg mb-6">
-            {{
-              type === "search"
-                ? "Agregar objetos a buscar"
-                : "Agregar objetos distractores"
-            }}
-          </p>
-          <label for="objectSelect" class="block mb-2 font-medium">
-            Seleccionar objeto:
-          </label>
-          <ul class="border rounded max-h-48 overflow-auto mb-4">
-            <li
-              v-for="obj in filteredAvailableObjects"
-              :key="obj.name"
-              @click="selectedObject = obj.name"
-              :class="[
-                'flex items-center gap-2 p-2 cursor-pointer',
-                selectedObject === obj.name ? 'bg-blue-200' : '',
-                Object.values(selections).includes(obj.name)
-                  ? 'opacity-50 cursor-not-allowed'
-                  : '',
-              ]"
-              :disabled="Object.values(selections).includes(obj.name)"
-            >
-              <img :src="obj.img" alt="" class="w-8 h-8 object-contain" />
-              <span>{{ obj.name }}</span>
-            </li>
-          </ul>
-          <label for="spawnSelect" class="block mb-2 font-medium">
-            Seleccionar spawn:
-          </label>
-          <select
-            id="spawnSelect"
-            v-model="selectedSpawn"
-            class="w-full border rounded px-3 py-2 mb-4"
-          >
-            <option disabled value="">-- Selecciona un spawn --</option>
-            <option
-              v-for="spawn in filteredSpawns"
-              :key="spawn.dbId"
-              :value="spawn.dbId"
-            >
-              Spawn {{ getSpawnNumber(spawn.dbId) }}
-            </option>
-          </select>
+          <img
+            :src="wallImage"
+            alt="Imagen de la pared"
+            class="w-full h-auto object-contain mb-6 rounded shadow"
+            style="max-height: 400px"
+          />
 
-          <button
-            @click="addSelection"
-            :disabled="
-              !selectedObject || !selectedSpawn || !!selections[selectedSpawn]
-            "
-            class="btn btn-secondary mb-6 px-6 py-2 rounded disabled:opacity-50"
-          >
-            Seleccionar
-          </button>
+          <div class="mb-6">
+            <h3 class="font-semibold mb-2 !mt-2">Objetos seleccionados:</h3>
+            <div
+              v-if="Object.keys(selections).length === 0"
+              class="text-gray-500"
+            >
+              No has seleccionado ningún objeto
+            </div>
+
+            <div
+              v-else
+              class="border rounded overflow-y-auto"
+              style="max-height: calc(100vh - 400px - 120px)"
+            >
+              <ul>
+                <li
+                  v-for="(obj, spawnId) in selections"
+                  :key="spawnId"
+                  class="mb-2 flex items-center gap-4 bg-gray-100 p-2 rounded shadow-sm"
+                >
+                  <img
+                    :src="getItemImage(obj)"
+                    alt="Imagen item"
+                    class="w-8 h-8 object-contain"
+                  />
+                  <span>
+                    Ubicación {{ getSpawnNumber(spawnId) }}:
+                    <strong>{{ obj }}</strong>
+                  </span>
+                  <button
+                    @click="removeSelection(spawnId)"
+                    class="ml-auto text-red-600 hover:underline"
+                    title="Eliminar selección"
+                  >
+                    ✖
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-
         <div class="flex justify-end gap-4 mt-6">
           <button @click="cancel" class="btn btn-secondary px-6 py-2 rounded">
             Cancelar
@@ -120,9 +69,167 @@
           </button>
         </div>
       </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="flex flex-col gap-2">
+        <div>
+          <h2 class="text-lg font-semibold">
+            {{ spawnZone }} -
+            {{
+              type === "search"
+                ? "Agregar objetos a buscar"
+                : "Agregar objetos distractores"
+            }}
+          </h2>
+        </div>
+
+        <template v-if="spawnZone === 'Pared de entrada'">
+          <div class="space-y-2 border rounded p-4 shadow-md">
+            <h3 class="font-semibold mb-2">Objetos del mueble</h3>
+
+            <ul class="border rounded max-h-22 overflow-y-auto mb-3">
+              <li
+                v-for="obj in filteredNormalObjects"
+                :key="obj.name"
+                @click="selectedObjectNormal = obj.name"
+                :class="[
+                  'flex items-center gap-2 p-2 cursor-pointer',
+                  selectedObjectNormal === obj.name ? 'bg-blue-200' : '',
+                  Object.values(selections).includes(obj.name)
+                    ? 'opacity-50 cursor-not-allowed'
+                    : '',
+                ]"
+              >
+                <img :src="obj.img" alt="" class="w-8 h-8 object-contain" />
+                <span>{{ obj.name }}</span>
+              </li>
+            </ul>
+
+            <select
+              v-model="selectedSpawnNormal"
+              class="w-full border rounded px-3 py-2 mb-3"
+            >
+              <option disabled value="">-- Selecciona una ubicación--</option>
+              <option
+                v-for="spawn in filteredEntranceSpawns"
+                :key="spawn.dbId"
+                :value="spawn.dbId"
+                :disabled="!!selections[spawn.dbId]"
+              >
+                Ubicación {{ getSpawnNumber(spawn.dbId) }}
+              </option>
+            </select>
+
+            <button
+              @click="addSelectionNormal"
+              :disabled="
+                !selectedObjectNormal ||
+                !selectedSpawnNormal ||
+                !!selections[selectedSpawnNormal]
+              "
+              class="btn btn-secondary px-6 py-2 rounded disabled:opacity-50 !mt-2"
+            >
+              Seleccionar
+            </button>
+          </div>
+
+          <div class="space-y-2 border rounded p-4 shadow-md">
+            <h3 class="font-semibold mb-2">Objetos del perchero</h3>
+            <ul class="border rounded max-h-22 overflow-y-auto mb-3">
+              <li
+                v-for="obj in filteredRackObjects"
+                :key="obj.name"
+                @click="selectedObjectRack = obj.name"
+                :class="[
+                  'flex items-center gap-2 p-2 cursor-pointer',
+                  selectedObjectRack === obj.name ? 'bg-blue-200' : '',
+                  Object.values(selections).includes(obj.name)
+                    ? 'opacity-50 cursor-not-allowed'
+                    : '',
+                ]"
+              >
+                <img :src="obj.img" alt="" class="w-8 h-8 object-contain" />
+                <span>{{ obj.name }}</span>
+              </li>
+            </ul>
+            <select
+              v-model="selectedSpawnRack"
+              class="w-full border rounded px-3 py-2 mb-6"
+            >
+              <option disabled value="">-- Selecciona una ubicación --</option>
+              <option
+                v-for="spawn in filteredPercheroSpawns"
+                :key="spawn.dbId"
+                :value="spawn.dbId"
+                :disabled="!!selections[spawn.dbId]"
+              >
+                Ubicación {{ getSpawnNumber(spawn.dbId) }}
+              </option>
+            </select>
+            <button
+              @click="addSelectionRack"
+              :disabled="
+                !selectedObjectRack ||
+                !selectedSpawnRack ||
+                !!selections[selectedSpawnRack]
+              "
+              class="btn btn-secondary px-6 py-2 rounded disabled:opacity-50 !mt-2"
+            >
+              Seleccionar
+            </button>
+          </div>
+        </template>
+
+        <template v-else>
+          <div class="space-y-2 border rounded p-4 shadow-md">
+            <h3 class="font-semibold mb-2">Seleccionar objeto</h3>
+            <ul class="border rounded max-h-48 overflow-auto mb-3">
+              <li
+                v-for="obj in filteredAvailableObjects"
+                :key="obj.name"
+                @click="selectedObject = obj.name"
+                :class="[
+                  'flex items-center gap-2 p-2 cursor-pointer',
+                  selectedObject === obj.name ? 'bg-blue-200' : '',
+                  Object.values(selections).includes(obj.name)
+                    ? 'opacity-50 cursor-not-allowed'
+                    : '',
+                ]"
+              >
+                <img :src="obj.img" alt="" class="w-8 h-8 object-contain" />
+                <span>{{ obj.name }}</span>
+              </li>
+            </ul>
+            <select
+              v-model="selectedSpawn"
+              class="w-full border rounded px-3 py-2 mb-3"
+            >
+              <option disabled value="">-- Selecciona una ubicación --</option>
+              <option
+                v-for="spawn in filteredSpawns"
+                :key="spawn.dbId"
+                :value="spawn.dbId"
+                :disabled="!!selections[spawn.dbId]"
+              >
+                Ubicación {{ getSpawnNumber(spawn.dbId) }}
+              </option>
+            </select>
+            <button
+              @click="addSelection"
+              :disabled="
+                !selectedObject || !selectedSpawn || !!selections[selectedSpawn]
+              "
+              class="btn btn-secondary px-6 py-2 rounded disabled:opacity-50 !mt-2"
+            >
+              Seleccionar
+            </button>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
+
 <script setup>
 import { ref, reactive, computed, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -134,12 +241,10 @@ const route = useRoute();
 const router = useRouter();
 
 const spawnZone = route.query.spawn || "";
-const level = route.query.level || "lowLevel"; // lowLevel o highLevel
-const type = route.query.type || "search"; // "search" o "distracting"
+const level = route.query.level || "lowLevel";
+const type = route.query.type || "search";
 
 const { selectionsByLevel, setSelections, getSelections } = useSelections();
-
-// cargar las selecciones actuales (según level, spawnZone y type de la vista)
 const selections = reactive(getSelections(level, spawnZone, type) || {});
 
 const imagesMap = {
@@ -160,7 +265,6 @@ const imagesMap = {
 };
 
 const complexityText = computed(() => (level === "lowLevel" ? "baja" : "alta"));
-
 const wallImage =
   (imagesMap[level] && imagesMap[level][spawnZone]) ||
   "/environment/Opposite.png";
@@ -171,14 +275,47 @@ const availableObjects = ref([]);
 const selectedSpawn = ref("");
 const selectedObject = ref("");
 
-// ---------------- FUNCIONES DE USO ----------------
+const selectedSpawnNormal = ref("");
+const selectedObjectNormal = ref("");
 
-// Obtiene todos los objetos usados en ESTE nivel (low/high) — tanto search como distracting
+const selectedSpawnRack = ref("");
+const selectedObjectRack = ref("");
+
+// ---------------- FILTROS ----------------
+const filteredAvailableObjects = computed(() => {
+  const usedObjects = getUsedObjectsForLevel();
+  Object.values(selections).forEach((obj) => usedObjects.delete(obj));
+  return availableObjects.value.filter((obj) => !usedObjects.has(obj.name));
+});
+
+const filteredNormalObjects = computed(() =>
+  filteredAvailableObjects.value.filter((o) => o.category !== "Rack")
+);
+
+const filteredRackObjects = computed(() =>
+  filteredAvailableObjects.value.filter((o) => o.category === "Rack")
+);
+
+const filteredSpawns = computed(() => {
+  const usedSpawns = getUsedSpawnsForLevel();
+  Object.keys(selections).forEach((spawnId) => usedSpawns.delete(spawnId));
+  return (availableSpawns.value || [])
+    .filter((s) => s.zone === spawnZone)
+    .filter((s) => !usedSpawns.has(s.dbId));
+});
+
+const filteredEntranceSpawns = computed(() =>
+  filteredSpawns.value.filter((s) => s.otherProp !== "Perchero")
+);
+const filteredPercheroSpawns = computed(() =>
+  filteredSpawns.value.filter((s) => s.otherProp === "Perchero")
+);
+
+// ---------------- FUNCIONES ----------------
 const getUsedObjectsForLevel = () => {
   const used = new Set();
   const levelData = selectionsByLevel[level];
   if (!levelData) return used;
-
   for (const zone in levelData) {
     const zoneData = levelData[zone];
     if (zoneData.distracting) {
@@ -191,12 +328,10 @@ const getUsedObjectsForLevel = () => {
   return used;
 };
 
-// Spawns ya usados en ESTE nivel
 const getUsedSpawnsForLevel = () => {
   const used = new Set();
   const levelData = selectionsByLevel[level];
   if (!levelData) return used;
-
   for (const zone in levelData) {
     const zoneData = levelData[zone];
     if (zoneData.distracting)
@@ -207,90 +342,40 @@ const getUsedSpawnsForLevel = () => {
   return used;
 };
 
-// ---------------- FILTROS DISPONIBLES ----------------
-
-// Aquí está la corrección: cuando estamos EN EL HALL y la vista es "search",
-// mostramos **solo** los objetos que fueron elegidos con "A buscar" en OTRAS paredes
-// (es decir: los que están en zoneData.search de esas paredes).
-const filteredAvailableObjects = computed(() => {
-  // caso especial: Hall + vista "search"
-  if (spawnZone === "Hall" && type === "search") {
-    const searchObjectsFromOtherWalls = new Set();
-    const levelData = selectionsByLevel[level];
-    if (levelData) {
-      for (const zone in levelData) {
-        if (zone === "Hall") continue; // excluimos Hall
-        const zoneData = levelData[zone];
-        // <-- aquí usamos **search**, no distracting
-        if (zoneData && zoneData.search) {
-          Object.values(zoneData.search).forEach((obj) =>
-            searchObjectsFromOtherWalls.add(obj)
-          );
-        }
-      }
-    }
-
-    // además no mostrar objetos ya asignados en la vista actual (para edición)
-    const alreadyAssignedHere = new Set(Object.values(selections));
-
-    return availableObjects.value.filter(
-      (obj) =>
-        searchObjectsFromOtherWalls.has(obj.name) &&
-        !alreadyAssignedHere.has(obj.name)
-    );
-  }
-
-  // caso general para otras paredes / modos: no permitir repetir objetos dentro del mismo nivel
-  const usedObjects = getUsedObjectsForLevel();
-  // permitir editar las selecciones actuales: sacarlas del set de usados
-  Object.values(selections).forEach((obj) => usedObjects.delete(obj));
-
-  return availableObjects.value.filter((obj) => !usedObjects.has(obj.name));
-});
-
-// Spawns disponibles (filtrado por zona y por si ya fueron usados en ESTE nivel)
-const filteredSpawns = computed(() => {
-  const usedSpawns = getUsedSpawnsForLevel();
-  Object.keys(selections).forEach((spawnId) => usedSpawns.delete(spawnId));
-
-  return (availableSpawns.value || [])
-    .filter((s) => s.zone === spawnZone)
-    .filter((s) => !usedSpawns.has(s.dbId));
-});
-
-// ---------------- CICLO DE VIDA ----------------
 onMounted(() => {
   availableSpawns.value = spawnInfo[level] || [];
-  availableObjects.value = Object.entries(itemImages).map(([name, img]) => ({
-    name,
-    img,
+  availableObjects.value = itemImages.map((item) => ({
+    name: item.name,
+    img: item.image,
+    category: item.category || "other",
   }));
   const saved = getSelections(level, spawnZone, type);
   Object.assign(selections, saved || {});
 });
 
-// ---------------- ACCIONES (ADD / REMOVE / SAVE) ----------------
+// ------- ADD SELECTIONS -------
 const addSelection = () => {
-  if (!selectedObject.value || !selectedSpawn.value) {
-    alert("Selecciona spawn y objeto antes de añadir.");
-    return;
-  }
-  if (selections[selectedSpawn.value]) {
-    alert("Este spawn ya tiene un objeto asignado.");
-    return;
-  }
-  if (Object.values(selections).includes(selectedObject.value)) {
-    alert("Este objeto ya está asignado en esta zona.");
-    return;
-  }
-
+  if (!selectedObject.value || !selectedSpawn.value) return;
   selections[selectedSpawn.value] = selectedObject.value;
-
-  // guardamos usando el mismo 'type' de la vista (esto respeta cómo venías usando useSelections)
   setSelections(level, spawnZone, type, selections);
-
   selectedSpawn.value = "";
   selectedObject.value = "";
+};
+
+const addSelectionNormal = () => {
+  if (!selectedObjectNormal.value || !selectedSpawnNormal.value) return;
+  selections[selectedSpawnNormal.value] = selectedObjectNormal.value;
+  setSelections(level, spawnZone, type, selections);
+  selectedSpawnNormal.value = "";
+  selectedObjectNormal.value = "";
+};
+
+const addSelectionRack = () => {
+  if (!selectedObjectRack.value || !selectedSpawnRack.value) return;
+  selections[selectedSpawnRack.value] = selectedObjectRack.value;
+  setSelections(level, spawnZone, type, selections);
+  selectedSpawnRack.value = "";
+  selectedObjectRack.value = "";
 };
 
 const removeSelection = (spawnId) => {
@@ -309,15 +394,6 @@ const getItemImage = (itemName) => {
 };
 
 const save = () => {
-  // Validación: si estamos en Hall y la vista es "search", debe haber asignaciones
-  if (spawnZone === "Hall" && type === "search") {
-    const hallObjects = Object.values(selections);
-    if (hallObjects.length === 0) {
-      alert("Debes asignar los objetos a buscar en el Hall antes de guardar.");
-      return;
-    }
-  }
-
   setSelections(level, spawnZone, type, selections);
   alert("Cambios guardados correctamente.");
   router.back();

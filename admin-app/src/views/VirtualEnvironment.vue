@@ -53,7 +53,7 @@ import { ref } from "vue";
 const photos = ref([
   {
     src: "/unityEnvironment/hall.png",
-    desc: "Hall: está es la zona donde el usuario tendrá la posibilidad de observar los objetos detenidamente para recordarlos y luego buscarlos en el living. Los objetos estarán colocados en los estantes flotantes de la pared o en el perchero en caso de ser necesario.",
+    desc: "Hall: esta es la zona donde el usuario tendrá la posibilidad de observar los objetos detenidamente para recordarlos y luego buscarlos en el living. Los objetos estarán colocados en los estantes flotantes de la pared; o en el perchero, en caso de ser necesario.",
   },
   {
     src: "/unityEnvironment/centroNivel1.png",
@@ -61,7 +61,7 @@ const photos = ref([
   },
   {
     src: "/unityEnvironment/entradaNivel1.png",
-    desc: "Nivel 1: entrada, es la primera zona que verá el usuario. Consta de un mueble bajo, decorado con un cuadro, una lampara y un jarrón. A la izquierda del mueble un perchero.",
+    desc: "Nivel 1: entrada, es la primera zona que verá el usuario. Consta de un mueble bajo, decorado con un cuadro, una lampara y un jarrón. A la izquierda del mueble, se encuentra un perchero.",
   },
   {
     src: "/unityEnvironment/opuestoNivel1.png",
@@ -69,23 +69,23 @@ const photos = ref([
   },
   {
     src: "/unityEnvironment/tvNivel1.png",
-    desc: "Nivel 1: zona donde se encuentra la tv justo frente al centro. En esta zona se pueden poner objetos en las repisas de abajo, al lado de la tv, en la repisa flotante de arriba y dentro de las puertas.",
+    desc: "Nivel 1: zona donde se encuentra la TV justo frente al centro. En esta zona se pueden poner objetos en las repisas de abajo, al lado de la TV, en la repisa flotante de arriba y dentro de las puertas.",
   },
   {
     src: "/unityEnvironment/centroNivel2.png",
-    desc: "Nivel 2: zona central, posee dos sillones individuales, una pequeña mesa entre ellos y una mesa más grande delante.",
+    desc: "Nivel 2: zona central, posee dos sillones individuales, una pequeña mesa entre ellos y una mesa más grande adelante.",
   },
   {
     src: "/unityEnvironment/entradaNivel2.png",
-    desc: "Nivel 2: entrada, primera zona que verá el usuario. Consta al igual que en el nivel 1 de un mueble bajo con sus decoraciones y un perchero, lo nuevo es que el usuario puede interactuar con cajones y ahi pueden guardarse objetos también.",
+    desc: "Nivel 2: entrada, primera zona que verá el usuario. Consta -al igual que en el nivel 1- de un mueble bajo con sus decoraciones y un perchero. Se añade que el usuario puede interactuar con cajones, que pueden tener objetos dentro.",
   },
   {
     src: "/unityEnvironment/opuestoNivel2.png",
-    desc: "Nivel 2: pared opuesta a la entrada. Se encuentra el mismo mueble compuesto del nivel 1 con las mismas capacidades para colocar objetos pero con un agregado de una repisa en el mueble bajo del centro.",
+    desc: "Nivel 2: pared opuesta a la entrada. Se encuentra el mismo mueble compuesto del nivel 1, con las mismas capacidades para colocar objetos, pero con un agregado de una repisa en el mueble bajo del centro.",
   },
   {
     src: "/unityEnvironment/tvNivel2.png",
-    desc: "Nivel 2: zona de la tv, justo frente al centro. En esta zona al igual que en el nivel 1 se pueden poner objetos dentro de las puertas, en la repisa flotante, en los lados de la tv y en la repisa pequeña de abajo.",
+    desc: "Nivel 2: zona de la TV, justo frente al centro. En esta zona -al igual que en el nivel 1- se pueden poner objetos dentro de las puertas, en la repisa flotante, en los lados de la TV y en la repisa pequeña de abajo.",
   },
 ]);
 

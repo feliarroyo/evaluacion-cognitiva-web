@@ -12,19 +12,25 @@
       <div>
         <label class="block font-medium mb-1">Tiempo de Memorización (s)</label>
         <input
-          v-model="data.timeMem"
+          v-model.number="data.timeMem"
           type="number"
+          min="1"
           class="w-full p-2 border rounded"
           :disabled="disabled"
+          @keydown="blockInvalid"
         />
       </div>
       <div>
         <label class="block font-medium mb-1">Tiempo de Búsqueda (s)</label>
         <input
-          v-model="data.timeSearch"
+          v-model.number="data.timeSearch"
           type="number"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          min="1"
           class="w-full p-2 border rounded"
           :disabled="disabled"
+          @keydown="blockInvalid"
         />
       </div>
     </div>
@@ -61,4 +67,14 @@ const countItems = (items) => {
   }
   return value;
 };
+
+  const blockInvalid = (e) => {
+    // Allow digits, navigation, back/delete
+    if (
+      !/[0-9]/.test(e.key) &&
+      !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
+    ) {
+      e.preventDefault();
+    }
+  }
 </script>

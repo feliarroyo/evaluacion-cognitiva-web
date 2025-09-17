@@ -37,7 +37,7 @@
     <div class="justify-center pt-4">
       <p class="text-center">
         {{ countItems(data.searchItems) }} objetos para buscar,
-        {{ countItems(data.distractingItems) }} distractores
+        {{ countItems(data.distractingItems, data.searchItems) }} distractores
       </p>
       <div class="flex justify-center pt-4">
         <button
@@ -59,22 +59,35 @@ defineProps({
   disabled: Boolean,
 });
 
-const countItems = (items) => {
-  let value = 0;
-  for (const location in items) {
-    console.log(location);
-    value += items[location]?.items?.length || 0;
-  }
-  return value;
-};
+// se contabilizan los items teniendo en cuenta ignorar de la lista de distractores los que son de memorización
+const countItems = (items, exclude = {}) => {
+  let count = 0;
 
-  const blockInvalid = (e) => {
-    // Allow digits, navigation, back/delete
-    if (
-      !/[0-9]/.test(e.key) &&
-      !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
-    ) {
-      e.preventDefault();
+  const excludeNames = new Set(
+    Object.values(exclude || {}).flatMap((entry) => entry.items || [])
+  );
+
+  for (const entry of Object.values(items || {})) {
+    const itemNames = entry.items || [];
+
+    for (const name of itemNames) {
+      console.log("ITEM NAME:", name);
+      if (!excludeNames.has(name)) {
+        count++;
+      }
     }
   }
+
+  return count;
+};
+
+const blockInvalid = (e) => {
+  // Allow digits, navigation, back/delete
+  if (
+    !/[0-9]/.test(e.key) &&
+    !["Backspace", "Delete", "ArrowLeft", "ArrowRight", "Tab"].includes(e.key)
+  ) {
+    e.preventDefault();
+  }
+};
 </script>

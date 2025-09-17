@@ -7,6 +7,7 @@ import PatientInfo from "../views/PatientInfo.vue";
 import SpawnSettingsView from "@/views/SpawnSettingsView.vue";
 import VirtualEnvironment from "@/views/VirtualEnvironment.vue";
 import SelectItems from "@/views/SelectItems.vue";
+import PatientResultDetails from "@/components/PatientResultDetail.vue";
 
 const router = createRouter({
   routes: [
@@ -34,6 +35,11 @@ const router = createRouter({
       path: "/virtual-environment",
       name: "VirtualEnvironment",
       component: VirtualEnvironment,
+    },
+    {
+      path: "/result-details",
+      name: "PatientResultDetails",
+      component: PatientResultDetails,
     },
   ],
   history: createWebHistory(import.meta.env.BASE_URL),

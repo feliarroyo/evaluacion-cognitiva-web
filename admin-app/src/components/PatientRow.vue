@@ -4,7 +4,7 @@
   >
     <span>{{ patient.name + " " + patient.lastName }}</span>
     <div class="flex gap-4 flex-wrap sm:flex-nowrap">
-      <button class="btn btn-secondary" @click="info">Ver más</button>
+      <button class="btn btn-secondary" @click="info">Historial</button>
       <button class="btn btn-secondary" @click="settings">Personalizar</button>
     </div>
   </div>

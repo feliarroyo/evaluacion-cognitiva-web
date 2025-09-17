@@ -203,7 +203,6 @@ const guardar = async () => {
       path = `pacientes/${patientId}`;
 
       if (useDefaultConfig.value) {
-        // 🔹 Si se marcó usar config por defecto, sobrescribimos con la del especialista
         const email = auth.currentUser?.email;
         if (!email) throw new Error("Usuario no autenticado");
 

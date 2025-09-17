@@ -5,7 +5,7 @@
     >
       <div class="sticky top-0 z-10 bg-white pt-4 pb-2">
         <h2 class="text-2xl font-bold mb-4 text-center">
-          Información del Paciente
+          Historial de Partidas
         </h2>
         <div
           class="bg-white shadow p-4 rounded mb-6 flex justify-between items-center"
@@ -25,7 +25,9 @@
           </button>
         </div>
       </div>
-      <h3 class="text-xl font-semibold mb-3">Historial de partidas</h3>
+
+      <h3 class="text-xl font-semibold mb-3">Partidas registradas</h3>
+
       <div class="flex flex-col grow min-h-0 overflow-y-auto pr-2 pt-2">
         <div v-if="loading" class="text-gray-500">Cargando...</div>
         <div v-else-if="playthroughs.length === 0" class="text-gray-500">
@@ -35,74 +37,15 @@
           <li
             v-for="(pt, index) in playthroughs"
             :key="index"
-            class="border p-3 rounded shadow"
+            class="border p-3 rounded shadow flex justify-between items-center"
           >
-            <div class="flex flex-col md:flex-row md:items-start md:gap-3">
-              <div class="md:w-1/2">
-                <p><strong>Fecha:</strong> {{ pt.date }} ({{ pt.time }})</p>
-                <p><strong>Nivel:</strong> {{ pt.level }}</p>
-                <p>
-                  <strong>Tiempo total de memorización:</strong>
-                  {{ pt.memTime }}s
-                </p>
-                <p>
-                  <strong>Tiempo total de búsqueda:</strong>
-                  {{ patient?.levelsConfig?.mediumLevel?.timeSearch }}s
-                </p>
-                <p>
-                  <strong>Tiempo utilizado de búsqueda:</strong>
-                  {{ pt.searchTime }}s
-                </p>
-                <p><strong>Presición: </strong>{{ pt.precision }}%</p>
-                <p>
-                  <strong>Eficiencia temporal: </strong>{{ pt.efficiency }}%
-                </p>
-                <p><strong>Tasa de error: </strong>{{ pt.errorRate }}%</p>
-                <p>
-                  <strong>Indice de omisión: </strong>{{ pt.omissionIndex }}%
-                </p>
-                <p>
-                  <strong>Puntaje general: </strong
-                  >{{ Math.max(0, pt.generalScore) }}%
-                </p>
-              </div>
-              <!-- Objetos (derecha) -->
-              <div class="md:w-1/2 mt-4 md:mt-0 grid grid-cols-2 gap-2">
-                <!-- Objetos memorizados -->
-                <div class="border border-gray-300 rounded p-2">
-                  <p class="font-semibold mb-1 text-center">
-                    Objetos memorizados
-                  </p>
-                  <div class="grid grid-cols-3 gap-2">
-                    <img
-                      v-for="(item, i) in pt.memObjects"
-                      :key="'mem-' + i"
-                      :src="getImagePath(item)"
-                      :alt="item"
-                      class="h-12 w-12 object-contain mx-auto"
-                      :title="item"
-                    />
-                  </div>
-                </div>
-
-                <!-- Objetos encontrados -->
-                <div class="border border-gray-300 rounded p-2">
-                  <p class="font-semibold mb-1 text-center">
-                    Objetos encontrados
-                  </p>
-                  <div class="grid grid-cols-3 gap-2">
-                    <img
-                      v-for="(item, i) in pt.foundObjects"
-                      :key="'found-' + i"
-                      :src="getImagePath(item)"
-                      :alt="item"
-                      class="h-12 w-12 object-contain mx-auto"
-                      :title="item"
-                    />
-                  </div>
-                </div>
-              </div>
+            <div>
+              <p><strong>Fecha:</strong> {{ pt.date }} ({{ pt.time }})</p>
+              <p><strong>Nivel:</strong> {{ pt.level }}</p>
             </div>
+            <button class="btn btn-primary" @click="goToDetails(pt)">
+              Ver detalles
+            </button>
           </li>
         </ul>
       </div>
@@ -115,23 +58,28 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { rtdb } from "@/firebase";
 import { get, ref as dbRef, child } from "firebase/database";
-import itemImages from "@/data/itemImages.json";
 
 const route = useRoute();
 const router = useRouter();
 const loading = ref(true);
 
-const patientId = route.query.id; // Passed via query param
+const patientId = route.query.id;
 const patient = ref(null);
 const playthroughs = ref([]);
 
 const volver = () => router.push({ name: "PatientList" });
 
-const getImagePath = (itemName) => {
-  return itemImages[itemName] || itemImages["Desconocido"];
+const goToDetails = (pt) => {
+  router.push({
+    name: "PatientResultDetails",
+    query: {
+      id: patientId,
+      date: pt.date,
+      time: pt.time,
+    },
+  });
 };
 
-// Fetch patient info and results
 onMounted(async () => {
   try {
     const patientSnapshot = await get(
@@ -140,70 +88,22 @@ onMounted(async () => {
     if (patientSnapshot.exists()) {
       patient.value = patientSnapshot.val();
     } else {
-      console.warn("Paciente no encontrado.");
       loading.value = false;
       return;
     }
 
     const patientEmail = patient.value.email;
-    if (!patientEmail) {
-      console.warn("El paciente no tiene un email definido.");
-      loading.value = false;
-      return;
-    }
-
     const resultsSnapshot = await get(child(dbRef(rtdb), `results`));
     const allResults = resultsSnapshot.exists() ? resultsSnapshot.val() : {};
 
     const matchedResults = [];
 
-    for (const [resultId, resultData] of Object.entries(allResults)) {
+    for (const [, resultData] of Object.entries(allResults)) {
       if (resultData.idPatient === patientEmail && resultData.results) {
         for (const [_, res] of Object.entries(resultData.results)) {
-          const memSet = new Set(res.memObjects || []);
-          const foundSet = new Set(res.foundObjects || []);
-
-          const correctObjects =
-            res.foundObjects?.filter((obj) => memSet.has(obj)) || [];
-          const incorrectObjects =
-            res.foundObjects?.filter((obj) => !memSet.has(obj)) || [];
-
-          const precision = memSet.size
-            ? (correctObjects.length / memSet.size) * 100
-            : 0;
-
-          const efficiency = patient.value?.levelsConfig?.mediumLevel
-            ?.timeSearch
-            ? ((patient.value.levelsConfig.mediumLevel.timeSearch -
-                res.searchTime) /
-                patient.value.levelsConfig.mediumLevel.timeSearch) *
-              100
-            : 0;
-
-          const errorRate = foundSet.size
-            ? (incorrectObjects.length / foundSet.size) * 100
-            : 0;
-
-          const omissionIndex = memSet.size
-            ? ((memSet.size - correctObjects.length) / memSet.size) * 100
-            : 0;
-
-          const W1 = 0.5;
-          const W2 = 0.3;
-          const W3 = 0.2;
-
-          const generalScore =
-            precision * W1 + efficiency * W2 - errorRate * W3;
-
           matchedResults.push({
             ...res,
-            correctObjects,
-            incorrectObjects,
-            precision: precision.toFixed(1),
-            efficiency: efficiency.toFixed(1),
-            errorRate: errorRate.toFixed(1),
-            omissionIndex: omissionIndex.toFixed(1),
-            generalScore: generalScore.toFixed(1),
+            generalScore: res.generalScore || 0,
           });
         }
       }
@@ -212,7 +112,7 @@ onMounted(async () => {
     playthroughs.value = matchedResults;
     loading.value = false;
   } catch (err) {
-    console.error("Error cargando info del paciente o resultados:", err);
+    console.error("Error cargando historial:", err);
     loading.value = false;
   }
 });

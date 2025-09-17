@@ -180,6 +180,116 @@
           </div>
         </template>
 
+        <template v-else-if="spawnZone === 'Hall'">
+          <!-- BLOQUE NORMAL -->
+          <div class="space-y-2 border rounded p-4 shadow-md">
+            <h3 class="font-semibold mb-2">Objetos de la estantería</h3>
+
+            <ul class="border rounded max-h-22 overflow-y-auto mb-3">
+              <li
+                v-for="obj in hallNormalObjects"
+                :key="obj"
+                @click="selectedObjectNormal = obj"
+                :class="[
+                  'flex items-center gap-2 p-2 cursor-pointer',
+                  selectedObjectNormal === obj ? 'bg-blue-200' : '',
+                  Object.values(selections).includes(obj)
+                    ? 'opacity-50 cursor-not-allowed'
+                    : '',
+                ]"
+              >
+                <img
+                  :src="getItemImage(obj)"
+                  alt=""
+                  class="w-8 h-8 object-contain"
+                />
+                <span>{{ obj }}</span>
+              </li>
+            </ul>
+
+            <select
+              v-model="selectedSpawnNormal"
+              class="w-full border rounded px-3 py-2 mb-3"
+            >
+              <option disabled value="">-- Selecciona una ubicación --</option>
+              <option
+                v-for="spawn in filteredEntranceSpawns"
+                :key="spawn.dbId"
+                :value="spawn.dbId"
+                :disabled="!!selections[spawn.dbId]"
+              >
+                Ubicación {{ getSpawnNumber(spawn.dbId) }}
+              </option>
+            </select>
+
+            <button
+              @click="addSelectionNormal"
+              :disabled="
+                !selectedObjectNormal ||
+                !selectedSpawnNormal ||
+                !!selections[selectedSpawnNormal]
+              "
+              class="btn btn-secondary px-6 py-2 rounded disabled:opacity-50 !mt-2"
+            >
+              Seleccionar
+            </button>
+          </div>
+
+          <!-- BLOQUE PERCHERO -->
+          <div class="space-y-2 border rounded p-4 shadow-md">
+            <h3 class="font-semibold mb-2">Objetos del perchero</h3>
+
+            <ul class="border rounded max-h-22 overflow-y-auto mb-3">
+              <li
+                v-for="obj in hallRackObjects"
+                :key="obj"
+                @click="selectedObjectRack = obj"
+                :class="[
+                  'flex items-center gap-2 p-2 cursor-pointer',
+                  selectedObjectRack === obj ? 'bg-blue-200' : '',
+                  Object.values(selections).includes(obj)
+                    ? 'opacity-50 cursor-not-allowed'
+                    : '',
+                ]"
+              >
+                <img
+                  :src="getItemImage(obj)"
+                  alt=""
+                  class="w-8 h-8 object-contain"
+                />
+                <span>{{ obj }}</span>
+              </li>
+            </ul>
+
+            <select
+              v-model="selectedSpawnRack"
+              class="w-full border rounded px-3 py-2 mb-3"
+            >
+              <option disabled value="">-- Selecciona una ubicación --</option>
+              <option
+                v-for="spawn in filteredPercheroSpawns"
+                :key="spawn.dbId"
+                :value="spawn.dbId"
+                :disabled="!!selections[spawn.dbId]"
+              >
+                Ubicación {{ getSpawnNumber(spawn.dbId) }}
+              </option>
+            </select>
+
+            <button
+              @click="addSelectionRack"
+              :disabled="
+                !selectedObjectRack ||
+                !selectedSpawnRack ||
+                !!selections[selectedSpawnRack]
+              "
+              class="btn btn-secondary px-6 py-2 rounded disabled:opacity-50 !mt-2"
+            >
+              Seleccionar
+            </button>
+          </div>
+        </template>
+
         <template v-else>
           <div class="space-y-2 border rounded p-4 shadow-md">
             <h3 class="font-semibold mb-2">Seleccionar objeto</h3>
@@ -392,6 +502,37 @@ const getItemImage = (itemName) => {
   const obj = availableObjects.value.find((o) => o.name === itemName);
   return obj ? obj.img : "";
 };
+
+// --- Objetos a buscar en otras zonas ---
+const hallObjects = computed(() => {
+  const objs = [];
+  const levelData = selectionsByLevel[level];
+  if (!levelData) return objs;
+
+  for (const zone in levelData) {
+    if (zone === "Hall") continue; // ignorar hall
+    const zoneData = levelData[zone];
+    if (zoneData.search) {
+      Object.values(zoneData.search).forEach((o) => objs.push(o));
+    }
+  }
+  return objs;
+});
+
+// Separar normales y perchero
+const hallNormalObjects = computed(() =>
+  hallObjects.value.filter((o) => {
+    const obj = availableObjects.value.find((x) => x.name === o);
+    return obj && obj.category !== "Rack";
+  })
+);
+
+const hallRackObjects = computed(() =>
+  hallObjects.value.filter((o) => {
+    const obj = availableObjects.value.find((x) => x.name === o);
+    return obj && obj.category === "Rack";
+  })
+);
 
 const save = () => {
   setSelections(level, spawnZone, type, selections);

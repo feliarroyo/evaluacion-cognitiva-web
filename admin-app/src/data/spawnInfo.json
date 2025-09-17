@@ -15,7 +15,7 @@
     {
       "dbId": "aboveEntrance4",
       "number": 3,
-      "zone": "Arriba del mueble a la izquierda",
+      "zone": "Pared de entrada",
       "otherProp": "..."
     },
     {
@@ -370,25 +370,25 @@
       "dbId": "hallRack1",
       "number": 13,
       "zone": "Hall",
-      "otherProp": "Perchero arriba izquierda"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack3",
       "number": 14,
       "zone": "Hall",
-      "otherProp": "Perchero arriba derecha"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack2",
       "number": 15,
       "zone": "Hall",
-      "otherProp": "Perchero abajo izquierda"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack4",
       "number": 16,
       "zone": "Hall",
-      "otherProp": "Perchero abajo derecha"
+      "otherProp": "Perchero"
     }
   ],
   "highLevel": [
@@ -846,25 +846,25 @@
       "dbId": "hallRack1",
       "number": 13,
       "zone": "Hall",
-      "otherProp": "Perchero arriba izquierda"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack3",
       "number": 14,
       "zone": "Hall",
-      "otherProp": "Perchero arriba derecha"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack2",
       "number": 15,
       "zone": "Hall",
-      "otherProp": "Perchero abajo izquierda"
+      "otherProp": "Perchero"
     },
     {
       "dbId": "hallRack4",
       "number": 16,
       "zone": "Hall",
-      "otherProp": "Perchero abajo derecha"
+      "otherProp": "Perchero"
     }
   ]
 }

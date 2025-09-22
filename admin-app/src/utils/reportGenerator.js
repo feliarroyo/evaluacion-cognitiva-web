@@ -114,24 +114,24 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
       playthrough.trueNegative
     }
 
-    Porcentaje de objetos identificados correctamente en relación al total de objetos (objetos a memorizar y distractores): ${
-      playthrough.accuracy
-    }%
-    Porcentaje de objetos elegidos correctamente en relación al total de objetos elegidos (tanto correctos como incorrectos): ${
-      playthrough.precision
-    }%
-    Porcentaje de objetos elegidos correctamente en relación al total de objetos que debían ser elegidos (objetos a memorizar): ${
-      playthrough.recall
-    }%
-    Porcentaje de objetos que el usuario no pudo identificar, en relación al total de objetos a identificar (objetos a memorizar): ${
-      playthrough.omissionIndex
-    }%
-    Porcentaje de objetos incorrectamente identificados sobre el total de objetos a identificar: ${
-      playthrough.errorRate
-    }%
-    Porcentaje del tiempo disponible para la identificación de objetos que el usuario utilizó efectivamente: ${
-      playthrough.temporalEfficiency
-    }%
+    Porcentaje de objetos identificados correctamente en relación al total de objetos (objetos a memorizar y distractores): ${(
+      playthrough.accuracy * 100
+    ).toFixed(2)}%
+    Porcentaje de objetos elegidos correctamente en relación al total de objetos elegidos (tanto correctos como incorrectos): ${(
+      playthrough.precision * 100
+    ).toFixed(2)}%
+    Porcentaje de objetos elegidos correctamente en relación al total de objetos que debían ser elegidos (objetos a memorizar): ${(
+      playthrough.recall * 100
+    ).toFixed(2)}%
+    Porcentaje de objetos que el usuario no pudo identificar, en relación al total de objetos a identificar (objetos a memorizar): ${(
+      playthrough.omissionIndex * 100
+    ).toFixed(2)}%
+    Porcentaje de objetos incorrectamente identificados sobre el total de objetos a identificar: ${(
+      playthrough.errorRate * 100
+    ).toFixed(2)}%
+    Porcentaje del tiempo disponible para la identificación de objetos que el usuario utilizó efectivamente: ${(
+      playthrough.temporalEfficiency * 100
+    ).toFixed(2)}%
 
     Medición del tiempo que ocupa el usuario en mirar cada objeto detalladamente en la fase de memorización: ${replaceIdsWithNames(
       playthrough.memViewObjects,

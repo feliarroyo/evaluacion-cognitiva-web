@@ -395,7 +395,17 @@ const selectedObjectRack = ref("");
 const filteredAvailableObjects = computed(() => {
   const usedObjects = getUsedObjectsForLevel();
   Object.values(selections).forEach((obj) => usedObjects.delete(obj));
-  return availableObjects.value.filter((obj) => !usedObjects.has(obj.name));
+
+  return availableObjects.value.filter((obj) => {
+    // Excluir los objetos de perchero de las zonas que no tienen perchero
+    if (
+      obj.category === "Rack" &&
+      !["Hall", "Pared de entrada"].includes(spawnZone)
+    ) {
+      return false;
+    }
+    return !usedObjects.has(obj.name);
+  });
 });
 
 const filteredNormalObjects = computed(() =>

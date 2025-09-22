@@ -26,6 +26,39 @@
         </div>
       </div>
 
+      <!-- Download modal -->
+      <div
+        v-if="showModal"
+        class="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-center justify-center"
+      >
+        <div class="relative bg-white p-6 rounded shadow-lg w-80 z-60">
+          <button
+            class="absolute top-2 right-4 text-red-500 hover:text-red-800"
+            @click="closeModal"
+          >
+            ✕
+          </button>
+
+          <h3 class="text-lg font-bold mb-4 text-center">Descargar informe</h3>
+          <p class="mb-4 text-center">Elige el formato:</p>
+
+          <div class="flex justify-between">
+            <button
+              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              @click="downloadFile('pdf')"
+            >
+              Formato PDF
+            </button>
+            <button
+              class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
+              @click="downloadFile('txt')"
+            >
+              Formato TXT
+            </button>
+          </div>
+        </div>
+      </div>
+
       <h3 class="text-xl font-semibold mb-3">Partidas registradas</h3>
 
       <div class="flex flex-col grow min-h-0 overflow-y-auto pr-2 pt-2">
@@ -43,8 +76,11 @@
               <p><strong>Fecha:</strong> {{ pt.date }} ({{ pt.time }})</p>
               <p><strong>Nivel:</strong> {{ pt.level }}</p>
             </div>
-            <button class="btn btn-primary" @click="goToDetails(pt)">
-              Ver detalles
+            <button class="btn btn-primary" @click="openModal(pt)">
+              Descargar informe
+            </button>
+            <button class="btn btn-primary" @click="downloadLog(pt)">
+              Descargar log
             </button>
           </li>
         </ul>
@@ -58,6 +94,7 @@ import { ref, onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { rtdb } from "@/firebase";
 import { get, ref as dbRef, child } from "firebase/database";
+import { generateReport } from "@/utils/reportGenerator";
 
 const route = useRoute();
 const router = useRouter();
@@ -67,18 +104,31 @@ const patientId = route.query.id;
 const patient = ref(null);
 const playthroughs = ref([]);
 
+const showModal = ref(false);
+const selectedPlaythrough = ref(null);
+
+const openModal = (pt) => {
+  selectedPlaythrough.value = pt;
+  showModal.value = true;
+};
+
+const closeModal = () => {
+  selectedPlaythrough.value = null;
+  showModal.value = false;
+};
+
 const volver = () => router.push({ name: "PatientList" });
 
-const goToDetails = (pt) => {
-  router.push({
-    name: "PatientResultDetails",
-    query: {
-      id: patientId,
-      date: pt.date,
-      time: pt.time,
-    },
-  });
-};
+// const goToDetails = (pt) => {
+//   router.push({
+//     name: "PatientResultDetails",
+//     query: {
+//       id: patientId,
+//       date: pt.date,
+//       time: pt.time,
+//     },
+//   });
+// };
 
 onMounted(async () => {
   try {
@@ -116,4 +166,34 @@ onMounted(async () => {
     loading.value = false;
   }
 });
+
+const downloadFile = (format) => {
+  if (!selectedPlaythrough.value) return;
+  generateReport(selectedPlaythrough.value, format, {
+    name: `${patient.value?.name || ""} ${patient.value?.lastName || ""}`,
+    email: patient.value?.email || "",
+  });
+
+  closeModal();
+};
+
+const downloadLog = (pt) => {
+  if (!pt || !pt.logging) return;
+
+  const blob = new Blob([pt.logging], { type: "text/plain;charset=utf-8" });
+  const safeName = `${patient.value?.name || ""}${
+    patient.value?.lastName || ""
+  }`.replace(/\s+/g, "");
+  const formattedDate = pt.date
+    ? pt.date.split("-").reverse().join("-")
+    : "unknown";
+  const fileName = `log_${safeName}_${formattedDate}.txt`;
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = fileName;
+  a.click();
+  URL.revokeObjectURL(url);
+};
 </script>

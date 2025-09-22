@@ -26,9 +26,9 @@
         <button type="button" class="btn btn-secondary" @click="goBack">
           Volver a lista de pacientes
         </button>
-        <button type="button" class="btn btn-secondary" @click="createLocales">
+        <!-- <button type="button" class="btn btn-secondary" @click="createLocales">
           Reset current admin
-        </button>
+        </button> -->
         <button type="submit" class="btn btn-primary">
           Registrar paciente
         </button>

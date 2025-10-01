@@ -50,7 +50,7 @@ const loading = ref(true);
 const router = useRouter();
 
 const goToSeeVirtualEnvironment = () => {
-  router.push({ name: "VirtualEnvironment" });
+  router.push({ name: "VirtualEnvironmentMenu" });
 };
 
 const goToNewPatient = () => {

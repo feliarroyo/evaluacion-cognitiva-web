@@ -9,6 +9,7 @@ import SpawnSettingsView from "@/views/SpawnSettingsView.vue";
 import VirtualEnvironment from "@/views/VirtualEnvironment.vue";
 import SelectItems from "@/views/SelectItems.vue";
 import PatientResultDetails from "@/components/PatientResultDetail.vue";
+import VirtualEnvironmentMenu from "@/views/VirtualEnvironmentMenu.vue";
 
 const router = createRouter({
   routes: [
@@ -36,9 +37,14 @@ const router = createRouter({
       name: "SelectItems",
       component: SelectItems,
     },
+    {
+      path: "/virtual-environment-menu",
+      name: "VirtualEnvironmentMenu",
+      component: VirtualEnvironmentMenu,
+    },
 
     {
-      path: "/virtual-environment",
+      path: "/virtual-environment/:section",
       name: "VirtualEnvironment",
       component: VirtualEnvironment,
     },

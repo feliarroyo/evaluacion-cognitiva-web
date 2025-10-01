@@ -3,6 +3,7 @@ import Login from "@/components/Login.vue";
 import PatientList from "../views/PatientList.vue";
 import NewPatient from "../views/NewPatient.vue";
 import LevelSettingsPage from "../views/LevelSettingsPage.vue";
+import LevelSelectionPage from "@/views/LevelSelectionPage.vue";
 import PatientInfo from "../views/PatientInfo.vue";
 import SpawnSettingsView from "@/views/SpawnSettingsView.vue";
 import VirtualEnvironment from "@/views/VirtualEnvironment.vue";
@@ -15,6 +16,11 @@ const router = createRouter({
     { path: "/patients", name: "PatientList", component: PatientList },
     { path: "/new-patient", name: "NewPatient", component: NewPatient },
     { path: "/info", name: "PatientInfo", component: PatientInfo },
+    {
+      path: "/level-selection",
+      name: "LevelSelectionPage",
+      component: LevelSelectionPage,
+    },
     {
       path: "/level-settings",
       name: "LevelSettingsPage",

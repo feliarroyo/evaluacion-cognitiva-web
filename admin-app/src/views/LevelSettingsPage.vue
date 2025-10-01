@@ -4,11 +4,13 @@
     <div v-if="context !== 'default'" class="mb-4 center-element">
       <label class="flex items-center gap-2">
         <input type="checkbox" v-model="useDefaultConfig" />
-        Usar configuración por defecto del especialista
+        Usar configuración por defecto
       </label>
     </div>
+
     <div class="flex flex-wrap gap-4">
       <LevelSettings
+        v-if="levelKey === 'lowLevel'"
         class="flex-1 min-w-[250px]"
         level="Bajo"
         :data="tempLevels.lowLevel"
@@ -17,6 +19,7 @@
       />
 
       <LevelSettings
+        v-else-if="levelKey === 'highLevel'"
         class="flex-1 min-w-[250px]"
         level="Alto"
         :data="tempLevels.highLevel"
@@ -26,10 +29,10 @@
     </div>
 
     <div class="btns-bar pt-4">
-      <button class="btn btn-secondary" @click="volver">
+      <button class="btn btn-secondary" @click="goBack">
         Salir sin guardar
       </button>
-      <button class="btn btn-success" @click="guardar">Guardar y salir</button>
+      <button class="btn btn-success" @click="save">Guardar</button>
     </div>
   </div>
 </template>
@@ -51,12 +54,15 @@ const { selectionsByLevel, resetAllSelections } = useSelections();
 const context = route.query.context || "patient";
 const patientId = route.query.id || null;
 const patientName = route.query.name || "";
+const levelKey = route.query.level || null;
 
-const titulo = computed(() =>
-  context === "default"
-    ? "Definir configuración por defecto"
-    : `Personalizar paciente: ${patientName}`
-);
+const titulo = computed(() => {
+  if (context === "default") {
+    return "Definir configuración por defecto";
+  }
+  const nivelTxt = levelKey === "lowLevel" ? "Nivel Bajo" : "Nivel Alto";
+  return `Personalizar paciente: ${patientName} - ${nivelTxt}`;
+});
 
 const defaultLevelStructure = {
   distractingItems: {},
@@ -184,62 +190,71 @@ const syncSelectionsToTempLevels = () => {
   }
 };
 
-const guardar = async () => {
+const save = async () => {
   try {
-    let newLevelsConfig = {
-      lowLevel: tempLevels.lowLevel,
-      highLevel: tempLevels.highLevel,
-    };
-
     let path = "";
 
     if (context === "default") {
       const email = auth.currentUser?.email;
       if (!email) throw new Error("Usuario no autenticado");
-
       const especialistaId = await getEspecialistaIdByEmail(email);
       path = `especialista/${especialistaId}`;
     } else {
       path = `pacientes/${patientId}`;
+    }
 
-      if (useDefaultConfig.value) {
-        const email = auth.currentUser?.email;
-        if (!email) throw new Error("Usuario no autenticado");
-
-        const especialistaId = await getEspecialistaIdByEmail(email);
-        const snapshot = await get(
-          child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
-        );
-
-        if (snapshot.exists()) {
-          newLevelsConfig = snapshot.val();
-        }
-      } else {
-        syncSelectionsToTempLevels();
-        newLevelsConfig = {
-          lowLevel: tempLevels.lowLevel,
-          highLevel: tempLevels.highLevel,
+    const snapshot = await get(child(dbRef(rtdb), `${path}/levelsConfig`));
+    let currentConfig = snapshot.exists()
+      ? snapshot.val()
+      : {
+          lowLevel: { ...defaultLevelStructure },
+          highLevel: { ...defaultLevelStructure },
         };
+
+    let nivelAGuardar = levelKey;
+
+    if (useDefaultConfig.value && context !== "default") {
+      const email = auth.currentUser?.email;
+      if (!email) throw new Error("Usuario no autenticado");
+      const especialistaId = await getEspecialistaIdByEmail(email);
+      const especialistaSnapshot = await get(
+        child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
+      );
+
+      if (especialistaSnapshot.exists()) {
+        const defaultConfig = especialistaSnapshot.val();
+        currentConfig[nivelAGuardar] = defaultConfig[nivelAGuardar] || {
+          ...defaultLevelStructure,
+        };
+      } else {
+        currentConfig[nivelAGuardar] = { ...defaultLevelStructure };
       }
+    } else {
+      syncSelectionsToTempLevels();
+      currentConfig[nivelAGuardar] = tempLevels[nivelAGuardar];
     }
 
     await update(dbRef(rtdb, path), {
-      levelsConfig: newLevelsConfig,
+      levelsConfig: currentConfig,
       usesDefault: useDefaultConfig.value,
     });
 
     tempLevels.initialized = false;
 
     router.push({
-      name: "PatientList",
-      query: { message: "Configuración guardada correctamente." },
+      name: "LevelSelectionPage",
+      query: {
+        id: patientId,
+        name: patientName,
+        message: "Configuración guardada correctamente.",
+      },
     });
   } catch (e) {
     console.error("Error al guardar:", e);
   }
 };
 
-const volver = () => {
+const goBack = () => {
   resetAllSelections();
 
   tempLevels.lowLevel = {
@@ -256,7 +271,13 @@ const volver = () => {
   };
 
   tempLevels.initialized = false;
-  router.push({ name: "PatientList" });
+  router.push({
+    name: "LevelSelectionPage",
+    query: {
+      id: patientId,
+      name: patientName,
+    },
+  });
 };
 
 const goToItemSelection = (levelKey) => {

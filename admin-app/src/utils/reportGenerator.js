@@ -322,7 +322,7 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
       playthrough.searchTime
     }s
 
-    d) Eficiencia temporal
+    d) Porcentaje de tiempo utilizado por el usuario:
 
         Interpretación: Porcentaje de tiempo utilizado por el usuario durante la etapa de evaluación, en relación al tiempo disponible para la etapa de evaluación (TDEE).
 

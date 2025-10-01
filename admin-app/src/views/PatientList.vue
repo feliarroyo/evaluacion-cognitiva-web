@@ -9,9 +9,6 @@
           <button class="btn btn-primary" @click="goToNewPatient">
             Agregar Paciente
           </button>
-          <button class="btn btn-primary" @click="goToSetDefault">
-            Definir niveles por defecto
-          </button>
           <button class="btn btn-secondary" @click="logOut">
             Cerrar sesión
           </button>
@@ -60,14 +57,10 @@ const goToNewPatient = () => {
   router.push({ name: "NewPatient" });
 };
 
-const goToSetDefault = () => {
-  router.push({ name: "LevelSettingsPage", query: { context: "default" } });
-};
-
 const logOut = async () => {
   try {
     await signOut(auth);
-    router.push({ name: "Login" }); // redirect to login screen
+    router.push({ name: "Login" });
   } catch (error) {
     console.error("Error signing out:", error);
   }
@@ -84,7 +77,7 @@ const handleInfo = (patient) => {
 
 const handleSettings = (patient) => {
   router.push({
-    name: "LevelSettingsPage",
+    name: "LevelSelectionPage",
     query: {
       context: "patient",
       id: patient.id,
@@ -104,11 +97,6 @@ onMounted(async () => {
   try {
     const database = getDatabase();
 
-    // 1. Buscar especialista por email en "especialistas"
-    // En RTDB no hay query para filtrar por campo,
-    // lo mejor es guardar UID de especialista al autenticar
-    // Pero si quieres buscar por email, hay que traer todos y filtrar:
-
     const especialistasSnapshot = await get(dbRef(database, "especialista"));
     if (!especialistasSnapshot.exists()) {
       console.warn("No hay especialistas en base");
@@ -116,7 +104,6 @@ onMounted(async () => {
       return;
     }
 
-    // Buscar especialista con email matching
     let especialistaKey = null;
     especialistasSnapshot.forEach((childSnap) => {
       const data = childSnap.val();
@@ -131,7 +118,6 @@ onMounted(async () => {
       return;
     }
 
-    // 2. Obtener lista de pacientes (IDs)
     const pacientesIdsSnapshot = await get(
       dbRef(database, `especialista/${especialistaKey}/pacientes`)
     );
@@ -143,7 +129,6 @@ onMounted(async () => {
 
     const pacientesIds = Object.keys(pacientesIdsSnapshot.val());
 
-    // 3. Por cada pacienteID, obtener datos completos
     const pacientesPromises = pacientesIds.map(async (id) => {
       const pacienteSnap = await get(dbRef(database, `pacientes/${id}`));
       if (pacienteSnap.exists()) {

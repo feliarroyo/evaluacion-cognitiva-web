@@ -5,7 +5,7 @@
     >
       <div class="sticky top-0 z-10 bg-white pt-4 pb-2">
         <h2 class="text-2xl font-bold mb-4 text-center">
-          Historial de Partidas
+          Historial de Resultados
         </h2>
         <div
           class="bg-white shadow p-4 rounded mb-6 flex justify-between items-center"
@@ -26,62 +26,48 @@
         </div>
       </div>
 
-      <!-- Download modal -->
-      <div
-        v-if="showModal"
-        class="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-center justify-center"
-      >
-        <div class="relative bg-white p-6 rounded shadow-lg w-80 z-60">
-          <button
-            class="absolute top-2 right-4 text-red-500 hover:text-red-800"
-            @click="closeModal"
-          >
-            ✕
-          </button>
-
-          <h3 class="text-lg font-bold mb-4 text-center">Descargar informe</h3>
-          <p class="mb-4 text-center">Elige el formato:</p>
-
-          <div class="flex justify-between">
-            <button
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-              @click="downloadFile('pdf')"
-            >
-              Formato PDF
-            </button>
-            <button
-              class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700"
-              @click="downloadFile('txt')"
-            >
-              Formato TXT
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="text-xl font-semibold mb-3">Partidas registradas</h3>
+      <h3 class="text-xl font-semibold mb-3">Resultados</h3>
 
       <div class="flex flex-col grow min-h-0 overflow-y-auto pr-2 pt-2">
         <div v-if="loading" class="text-gray-500">Cargando...</div>
         <div v-else-if="playthroughs.length === 0" class="text-gray-500">
-          Sin partidas registradas.
+          Sin resultados registrados.
         </div>
         <ul v-else class="flex flex-col gap-4">
           <li
             v-for="(pt, index) in playthroughs"
             :key="index"
-            class="border p-3 rounded shadow flex justify-between items-center"
+            class="border p-3 rounded shadow flex items-center justify-between"
           >
-            <div>
+            <div class="flex flex-col">
               <p><strong>Fecha:</strong> {{ pt.date }} ({{ pt.time }})</p>
               <p><strong>Nivel:</strong> {{ pt.level }}</p>
             </div>
-            <button class="btn btn-primary" @click="openModal(pt)">
-              Descargar informe
-            </button>
-            <button class="btn btn-primary" @click="downloadLog(pt)">
-              Descargar log
-            </button>
+            <div class="flex flex-col items-center">
+              <p class="font-semibold mb-1">Descargar informe</p>
+              <div class="flex gap-2">
+                <button
+                  class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700"
+                  @click="downloadFile(pt, 'pdf')"
+                >
+                  .pdf
+                </button>
+                <button
+                  class="bg-gray-600 text-white px-3 py-1 rounded hover:bg-gray-700"
+                  @click="downloadFile(pt, 'txt')"
+                >
+                  .txt
+                </button>
+              </div>
+            </div>
+            <div>
+              <button
+                class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                @click="downloadLog(pt)"
+              >
+                Descargar log
+              </button>
+            </div>
           </li>
         </ul>
       </div>
@@ -118,17 +104,6 @@ const closeModal = () => {
 };
 
 const volver = () => router.push({ name: "PatientList" });
-
-// const goToDetails = (pt) => {
-//   router.push({
-//     name: "PatientResultDetails",
-//     query: {
-//       id: patientId,
-//       date: pt.date,
-//       time: pt.time,
-//     },
-//   });
-// };
 
 onMounted(async () => {
   try {
@@ -167,14 +142,13 @@ onMounted(async () => {
   }
 });
 
-const downloadFile = (format) => {
-  if (!selectedPlaythrough.value) return;
-  generateReport(selectedPlaythrough.value, format, {
-    name: `${patient.value?.name || ""} ${patient.value?.lastName || ""}`,
+const downloadFile = (pt, format) => {
+  if (!pt) return;
+
+  generateReport(pt, format, {
+    name: patient.value?.name || "",
     email: patient.value?.email || "",
   });
-
-  closeModal();
 };
 
 const downloadLog = (pt) => {

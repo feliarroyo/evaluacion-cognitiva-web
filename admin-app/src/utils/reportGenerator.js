@@ -98,27 +98,6 @@ function addTableToPDF(doc, metricString, logContent, config, startY = 20) {
   return doc.lastAutoTable.finalY + 10;
 }
 
-function formatRowsAsText(headers, rows) {
-  if (!rows || !rows.length) return "";
-
-  const widths = headers.map((h, i) =>
-    Math.max(h.length, ...rows.map((r) => String(r[i] ?? "").length))
-  );
-
-  const pad = (s, w) => {
-    s = String(s ?? "");
-    return s + " ".repeat(Math.max(0, w - s.length));
-  };
-
-  const headerLine = headers.map((h, i) => pad(h, widths[i])).join(" | ");
-  const separator = widths.map((w) => "-".repeat(w)).join("-+-");
-  const bodyLines = rows.map((r) =>
-    r.map((cell, i) => pad(cell, widths[i])).join(" | ")
-  );
-
-  return [headerLine, separator, ...bodyLines].join("\n");
-}
-
 function insertTablesInText(content, playthrough, logContent) {
   const tableMap = {
     "TABLA memView": {
@@ -145,8 +124,12 @@ function insertTablesInText(content, playthrough, logContent) {
     const rows = parseMetricString(data, logContent).map((arr) =>
       config.order.map((i) => translate(arr[i]))
     );
-    const tableText = formatRowsAsText(config.headers, rows);
-    finalContent = finalContent.replace(marker, tableText);
+
+    const tableCSV = [config.headers.join(";")]
+      .concat(rows.map((r) => r.join(";")))
+      .join("\n");
+
+    finalContent = finalContent.replace(marker, tableCSV);
   });
 
   return finalContent;
@@ -223,14 +206,14 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
           Cantidad de objetos: ${playthrough.memObjects.length}
 
           Lista de objetos: 
-          ${playthrough.memObjects?.join("\n          ")}
+          ${(playthrough.memObjects ?? []).join("\n          ")}
 
     c) Objetos distractores
 
           Cantidad de objetos: ${playthrough.decoyObjects.length}
 
           Lista de objetos: 
-          ${playthrough.decoyObjects?.join("\n          ")}
+          ${(playthrough.decoyObjects ?? []).join("\n          ")}
     
     d) Tiempo disponible para la etapa de memorización: ${playthrough.memTime}s
 
@@ -245,28 +228,28 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
           Cantidad de objetos: ${playthrough.truePositive}
 
           Lista de objetos: 
-          ${playthrough.memChosen.join("\n          ")}
+          ${(playthrough.memChosen ?? []).join("\n          ")}
     
     b) Objetos distractores elegidos por el usuario (ODE)
 
           Cantidad de objetos: ${playthrough.falsePositive}
 
           Lista de objetos: 
-          ${playthrough.decoyChosen.join("\n          ")}
+          ${(playthrough.decoyChosen ?? []).join("\n          ")}
     
     c) Objetos a memorizar no elegidos por el usuario (OMNE):
 
           Cantidad de objetos: ${playthrough.falseNegative}
 
           Lista de objetos: 
-          ${playthrough.memNotChosen?.join("\n          ")}
+          ${(playthrough.memNotChosen ?? []).join("\n          ")}
     
     d) Objetos distractores no elegidos por el usuario (ODNE):
 
           Cantidad de objetos: ${playthrough.trueNegative}
 
           Lista de objetos: 
-          ${playthrough.decoyNotChosen.join("\n          ")}
+          ${(playthrough.decoyNotChosen ?? []).join("\n          ")}
     
     e) Accuracy
 
@@ -312,7 +295,7 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
 
     a) Tiempos utilizados por el usuario, durante la etapa de memorización, para la observación detallada de los objetos:
     
-    TABLA memView
+TABLA memView
 
     b) Tiempo transcurrido entre la etapa de memorización y la etapa de evaluación: ${
       playthrough.intermediateTime
@@ -332,15 +315,15 @@ export function generateReport(playthrough, format = "pdf", patientInfo = {}) {
     
     e) Tiempos utilizados por el usuario, durante la etapa de evaluación, para la observación detallada de los objetos:
     
-    TABLA searchView
+TABLA searchView
     
     f) Tiempos transcurridos desde que el usuario inició la etapa de evaluación hasta las elecciones de los objetos:
     
-    TABLA searchSelection
+TABLA searchSelection
     
     g) Tiempos transcurridos, durante la etapa de evaluación, entre elecciones consecutivas de objetos:
     
-    TABLA searchChoiceInterval
+TABLA searchChoiceInterval
   `;
 
   if (format === "txt") {

@@ -21,7 +21,7 @@
         />
       </div>
       <div>
-        <label class="block font-medium mb-1">Tiempo de Búsqueda (s)</label>
+        <label class="block font-medium mb-1">Tiempo de Evaluación (s)</label>
         <input
           v-model.number="data.timeSearch"
           type="number"
@@ -36,8 +36,9 @@
     </div>
     <div class="justify-center pt-4">
       <p class="text-center">
-        {{ countItems(data.searchItems) }} objetos para buscar,
-        {{ countItems(data.distractingItems, data.searchItems) }} distractores
+        {{ countItems(data.searchItems) }} objetos a memorizar,
+        {{ countItems(data.distractingItems, data.searchItems) }} objetos
+        distractores
       </p>
       <div class="flex justify-center pt-4">
         <button
@@ -59,26 +60,10 @@ defineProps({
   disabled: Boolean,
 });
 
-// se contabilizan los items teniendo en cuenta ignorar de la lista de distractores los que son de memorización
 const countItems = (items, exclude = {}) => {
-  let count = 0;
-
-  const excludeNames = new Set(
-    Object.values(exclude || {}).flatMap((entry) => entry.items || [])
-  );
-
-  for (const entry of Object.values(items || {})) {
-    const itemNames = entry.items || [];
-
-    for (const name of itemNames) {
-      console.log("ITEM NAME:", name);
-      if (!excludeNames.has(name)) {
-        count++;
-      }
-    }
-  }
-
-  return count;
+  const excludeNames = new Set(Object.values(exclude || {}));
+  return Object.values(items || {}).filter((name) => !excludeNames.has(name))
+    .length;
 };
 
 const blockInvalid = (e) => {

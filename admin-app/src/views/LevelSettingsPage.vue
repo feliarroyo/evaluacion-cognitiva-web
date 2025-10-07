@@ -85,19 +85,12 @@ async function getEspecialistaIdByEmail(email) {
   throw new Error("Especialista no encontrado");
 }
 
-async function loadDefaultConfigFromEspecialista() {
-  const email = auth.currentUser?.email;
-  if (!email) throw new Error("Usuario no autenticado");
-
-  const especialistaId = await getEspecialistaIdByEmail(email);
-  const snapshot = await get(
-    child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
-  );
-
+async function loadGlobalDefaultConfig() {
+  const snapshot = await get(child(dbRef(rtdb), "globalLevelsConfig"));
   if (snapshot.exists()) {
-    const levelsConfig = snapshot.val();
-    tempLevels.lowLevel = levelsConfig.lowLevel || { ...defaultLevelStructure };
-    tempLevels.highLevel = levelsConfig.highLevel || {
+    const globalConfig = snapshot.val();
+    tempLevels.lowLevel = globalConfig.lowLevel || { ...defaultLevelStructure };
+    tempLevels.highLevel = globalConfig.highLevel || {
       ...defaultLevelStructure,
     };
   } else {
@@ -112,11 +105,7 @@ onMounted(async () => {
       let path = "";
 
       if (context === "default") {
-        const email = auth.currentUser?.email;
-        if (!email) throw new Error("Usuario no autenticado");
-
-        const especialistaId = await getEspecialistaIdByEmail(email);
-        path = `especialista/${especialistaId}`;
+        path = "globalLevelsConfig";
       } else {
         path = `pacientes/${patientId}`;
       }
@@ -128,7 +117,7 @@ onMounted(async () => {
         useDefaultConfig.value = data.usesDefault ?? false;
 
         if (useDefaultConfig.value && context !== "default") {
-          await loadDefaultConfigFromEspecialista();
+          await loadGlobalDefaultConfig();
         } else {
           const levelsConfig = data.levelsConfig || {};
           tempLevels.lowLevel = levelsConfig.lowLevel || {
@@ -195,10 +184,7 @@ const save = async () => {
     let path = "";
 
     if (context === "default") {
-      const email = auth.currentUser?.email;
-      if (!email) throw new Error("Usuario no autenticado");
-      const especialistaId = await getEspecialistaIdByEmail(email);
-      path = `especialista/${especialistaId}`;
+      path = "globalLevelsConfig";
     } else {
       path = `pacientes/${patientId}`;
     }
@@ -214,16 +200,12 @@ const save = async () => {
     let nivelAGuardar = levelKey;
 
     if (useDefaultConfig.value && context !== "default") {
-      const email = auth.currentUser?.email;
-      if (!email) throw new Error("Usuario no autenticado");
-      const especialistaId = await getEspecialistaIdByEmail(email);
-      const especialistaSnapshot = await get(
-        child(dbRef(rtdb), `especialista/${especialistaId}/levelsConfig`)
+      const globalSnapshot = await get(
+        child(dbRef(rtdb), "globalLevelsConfig")
       );
-
-      if (especialistaSnapshot.exists()) {
-        const defaultConfig = especialistaSnapshot.val();
-        currentConfig[nivelAGuardar] = defaultConfig[nivelAGuardar] || {
+      if (globalSnapshot.exists()) {
+        const globalConfig = globalSnapshot.val();
+        currentConfig[nivelAGuardar] = globalConfig[nivelAGuardar] || {
           ...defaultLevelStructure,
         };
       } else {

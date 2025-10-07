@@ -87,12 +87,34 @@ const registerUser = async () => {
     const newUserId = userCred.user.uid;
     console.log("Usuario creado:", newUserId);
 
+    const globalConfigSnap = await get(dbRef(database, "globalLevelsConfig"));
+    let levelsConfig = {
+      lowLevel: {
+        distractingItems: {},
+        searchItems: {},
+        timeMem: 0,
+        timeSearch: 0,
+      },
+      highLevel: {
+        distractingItems: {},
+        searchItems: {},
+        timeMem: 0,
+        timeSearch: 0,
+      },
+    };
+
+    if (globalConfigSnap.exists()) {
+      levelsConfig = globalConfigSnap.val();
+    } else {
+      console.warn("No existe globalLevelsConfig, se usará estructura vacía.");
+    }
+
     // Agregar paciente a Realtime Database
     await set(dbRef(database, `pacientes/${newUserId}`), {
       name: name.value,
       lastName: lastName.value,
-      levelsConfig: levelsConfigDefault,
       email: email.value,
+      levelsConfig: levelsConfig,
     });
 
     // Buscar especialista actual (por email)
@@ -109,7 +131,6 @@ const registerUser = async () => {
     if (!especialistaKey) {
       console.warn("Especialista no encontrado.");
     } else {
-      // Agregar paciente al especialista (como objeto vacío, o true)
       await update(
         dbRef(database, `especialista/${especialistaKey}/pacientes`),
         {
@@ -121,7 +142,6 @@ const registerUser = async () => {
     // Cerrar sesión secundaria
     await signOut(secondaryAuth);
 
-    // Mensaje de éxito y navegación
     router.push({
       path: "/patients",
       query: {

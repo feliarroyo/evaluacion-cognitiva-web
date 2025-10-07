@@ -243,12 +243,18 @@ const filteredAvailableObjects = computed(() => {
   });
 });
 
+const hallSearchObjects = computed(() => {
+  return new Set(Object.values(selectionsByLevel[level]?.Hall?.search || {}));
+});
+
 const filteredNonRackObjects = computed(() =>
   filteredAvailableObjects.value.filter((o) => o.category !== "Rack")
 );
 
 const filteredRackObjects = computed(() =>
-  filteredAvailableObjects.value.filter((o) => o.category === "Rack")
+  filteredAvailableObjects.value
+    .filter((o) => o.category === "Rack")
+    .filter((o) => !hallSearchObjects.value.has(o.name))
 );
 
 const filteredSpawns = computed(() => {
@@ -290,7 +296,11 @@ const hallSelectedRackObjects = computed(() => {
   return hallSelectedObjects.value
     .map((name) => {
       const obj = availableObjects.value.find((o) => o.name === name);
-      return obj?.category === "Rack" ? obj : null;
+
+      if (obj?.category === "Rack" && hallSearchObjects.value.has(obj.name)) {
+        return obj;
+      }
+      return null;
     })
     .filter(Boolean);
 });

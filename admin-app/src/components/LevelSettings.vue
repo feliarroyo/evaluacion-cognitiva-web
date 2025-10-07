@@ -61,8 +61,8 @@ defineProps({
 });
 
 const countItems = (items, exclude = {}) => {
-  const excludeNames = new Set(Object.values(exclude || {}));
-  return Object.values(items || {}).filter((name) => !excludeNames.has(name))
+  const excludeSet = new Set(Object.values(exclude || {}));
+  return Object.values(items || {}).filter((name) => !excludeSet.has(name))
     .length;
 };
 

@@ -45,6 +45,7 @@ import { ref as dbRef, child, get, update } from "firebase/database";
 import LevelSettings from "@/components/LevelSettings.vue";
 import { tempLevels } from "@/data/tempLevelData.js";
 import { useSelections } from "@/composables/useSelections";
+import { watch } from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -64,26 +65,54 @@ const titulo = computed(() => {
   return `Personalizar paciente: ${patientName} - ${nivelTxt}`;
 });
 
+const syncSelectionsToTempLevelsRealtime = () => {
+  if (!levelKey) return;
+  const levelSelections = selectionsByLevel[levelKey] || {};
+
+  tempLevels[levelKey].searchItems = {};
+  tempLevels[levelKey].distractingItems = {};
+
+  for (const zone in levelSelections) {
+    const spawnData = levelSelections[zone];
+    if (!spawnData) continue;
+
+    if (zone === "Hall") {
+      if (spawnData.search) {
+        Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
+          if (itemName) tempLevels[levelKey].searchItems[spawnId] = itemName;
+        });
+      }
+    } else {
+      if (spawnData.search) {
+        Object.entries(spawnData.search).forEach(([spawnId, itemName]) => {
+          if (itemName)
+            tempLevels[levelKey].distractingItems[spawnId] = itemName;
+        });
+      }
+      if (spawnData.distracting) {
+        Object.entries(spawnData.distracting).forEach(([spawnId, itemName]) => {
+          if (itemName)
+            tempLevels[levelKey].distractingItems[spawnId] = itemName;
+        });
+      }
+    }
+  }
+};
+
+watch(
+  () => selectionsByLevel[levelKey],
+  () => {
+    syncSelectionsToTempLevelsRealtime();
+  },
+  { deep: true, immediate: true }
+);
+
 const defaultLevelStructure = {
   distractingItems: {},
   searchItems: {},
   timeMem: 0,
   timeSearch: 0,
 };
-
-async function getEspecialistaIdByEmail(email) {
-  const snapshot = await get(child(dbRef(rtdb), "especialista"));
-  if (!snapshot.exists()) throw new Error("No se encontraron especialistas");
-
-  const especialistas = snapshot.val();
-  for (const [id, data] of Object.entries(especialistas)) {
-    if (data.mail === email) {
-      return id;
-    }
-  }
-
-  throw new Error("Especialista no encontrado");
-}
 
 async function loadGlobalDefaultConfig() {
   const snapshot = await get(child(dbRef(rtdb), "globalLevelsConfig"));
@@ -221,7 +250,21 @@ const save = async () => {
       usesDefault: useDefaultConfig.value,
     });
 
+    resetAllSelections();
+    tempLevels.lowLevel = {
+      distractingItems: {},
+      searchItems: {},
+      timeMem: "0",
+      timeSearch: "0",
+    };
+    tempLevels.highLevel = {
+      distractingItems: {},
+      searchItems: {},
+      timeMem: "0",
+      timeSearch: "0",
+    };
     tempLevels.initialized = false;
+    useDefaultConfig.value = false;
 
     router.push({
       name: "LevelSelectionPage",

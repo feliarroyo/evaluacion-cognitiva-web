@@ -35,6 +35,27 @@ export const useSelections = () => {
     return [...new Set(objs)];
   };
 
+  const isHallObjectUsedElsewhere = (level, objectName) => {
+    const levelData = selectionsByLevel[level];
+    if (!levelData) return false;
+
+    for (const zone in levelData) {
+      if (zone === "Hall") continue;
+      const zoneData = levelData[zone];
+      if (
+        zoneData?.search &&
+        Object.values(zoneData.search).includes(objectName)
+      )
+        return true;
+      if (
+        zoneData?.distracting &&
+        Object.values(zoneData.distracting).includes(objectName)
+      )
+        return true;
+    }
+    return false;
+  };
+
   return {
     selectionsByLevel,
     getSelections,
@@ -42,5 +63,6 @@ export const useSelections = () => {
     resetAllSelections,
     getSearchObjects,
     getDistractingObjects,
+    isHallObjectUsedElsewhere,
   };
 };

@@ -198,7 +198,12 @@ const spawnZone = route.query.spawn || "";
 const level = route.query.level || "lowLevel";
 const type = route.query.type || "search";
 
-const { selectionsByLevel, setSelections, getSelections } = useSelections();
+const {
+  selectionsByLevel,
+  setSelections,
+  getSelections,
+  isHallObjectUsedElsewhere,
+} = useSelections();
 const selections = reactive(getSelections(level, spawnZone, type) || {});
 
 const wallImages = {
@@ -317,7 +322,13 @@ const hallObjectsToMemorize = computed(() => {
       if (obj.category === "Rack" && spawnZone !== "Pared de entrada")
         return null;
 
-      return { name: obj.name, img: obj.img || "/default.png" };
+      const usedElsewhere = isHallObjectUsedElsewhere(level, obj.name);
+
+      return {
+        name: obj.name,
+        img: obj.img || "/default.png",
+        disabled: usedElsewhere,
+      };
     })
     .filter(Boolean);
 });

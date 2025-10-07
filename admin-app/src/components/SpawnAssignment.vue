@@ -7,10 +7,10 @@
       <li
         v-for="obj in objects"
         :key="obj.name"
-        @click="!isObjectUsed(obj.name) && (selectedObject = obj.name)"
+        @click="!isDisabled(obj) && (selectedObject = obj.name)"
         :class="[
           'flex items-center gap-1.5 p-1.5 rounded-sm transition select-none',
-          isObjectUsed(obj.name)
+          isDisabled(obj)
             ? 'opacity-50 cursor-not-allowed'
             : 'cursor-pointer hover:bg-blue-100',
           selectedObject === obj.name ? 'bg-blue-200' : '',
@@ -41,7 +41,6 @@
       </option>
     </select>
 
-    <!-- Confirm button -->
     <button
       @click="addSelection"
       :disabled="!selectedObject || !selectedSpawn || selections[selectedSpawn]"
@@ -72,9 +71,13 @@ const usedObjects = computed(() => new Set(Object.values(props.selections)));
 
 const isObjectUsed = (objectName) => usedObjects.value.has(objectName);
 
+const isDisabled = (obj) => {
+  return obj.disabled || isObjectUsed(obj.name);
+};
+
 const addSelection = () => {
   if (!selectedObject.value || !selectedSpawn.value) return;
-  if (isObjectUsed(selectedObject.value)) return; // prevent reuse
+  if (isDisabled({ name: selectedObject.value })) return;
   props.addToSelections(selectedSpawn.value, selectedObject.value);
   selectedObject.value = "";
   selectedSpawn.value = "";

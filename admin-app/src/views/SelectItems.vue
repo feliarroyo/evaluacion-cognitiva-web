@@ -208,25 +208,25 @@ const selections = reactive(getSelections(level, spawnZone, type) || {});
 
 const wallImages = {
   lowLevel: {
-    "Pared de entrada": "/environmentSpawns/entradaNivel1.png",
-    "Centro del living": "/environmentSpawns/centroNivel1.png",
-    "Pared opuesta": "/environmentSpawns/opuestoNivel1.png",
-    "Pared de la TV": "/environmentSpawns/tvNivel1_Abierto.png",
-    Hall: "/environmentSpawns/hall.png",
+    "Pared de entrada": import.meta.env.BASE_URL + "environmentSpawns/entradaNivel1.png",
+    "Centro del living": import.meta.env.BASE_URL + "environmentSpawns/centroNivel1.png",
+    "Pared opuesta": import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel1.png",
+    "Pared de la TV": import.meta.env.BASE_URL + "environmentSpawns/tvNivel1_Abierto.png",
+    Hall: import.meta.env.BASE_URL + "environmentSpawns/hall.png",
   },
   highLevel: {
-    "Pared de entrada": "/environmentSpawns/entradaNivel2.png",
-    "Centro del living": "/environmentSpawns/centroNivel2.png",
-    "Pared opuesta": "/environmentSpawns/opuestoNivel2.png",
-    "Pared de la TV": "/environmentSpawns/tvNivel2_Abierto.png",
-    Hall: "/environmentSpawns/hall.png",
+    "Pared de entrada": import.meta.env.BASE_URL + "environmentSpawns/entradaNivel2.png",
+    "Centro del living": import.meta.env.BASE_URL + "environmentSpawns/centroNivel2.png",
+    "Pared opuesta": import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel2.png",
+    "Pared de la TV": import.meta.env.BASE_URL + "environmentSpawns/tvNivel2_Abierto.png",
+    Hall: import.meta.env.BASE_URL + "environmentSpawns/hall.png",
   },
 };
 
 const complexityText = computed(() => (level === "lowLevel" ? "baja" : "alta"));
 const wallImage =
   (wallImages[level] && wallImages[level][spawnZone]) ||
-  "/environment/Opposite.png";
+  (import.meta.env.BASE_URL + "environment/Opposite.png");
 
 const availableSpawns = ref([]);
 const availableObjects = ref([]);

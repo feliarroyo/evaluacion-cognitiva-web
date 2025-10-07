@@ -1,262 +1,262 @@
 [
   {
     "name": "Binoculares versión 2",
-    "image": "src/assets/items/binoculars_nobg.png",
+    "image": "items/binoculars_nobg.png",
     "category": "Instrumento óptico"
   },
   {
     "name": "Globo terráqueo modelo 1",
-    "image": "src/assets/items/WorldGlobe_nobg.png",
+    "image": "items/WorldGlobe_nobg.png",
     "category": "Decorativo"
   },
   {
     "name": "Mandolina",
-    "image": "src/assets/items/Mandolin_nobg.png",
+    "image": "items/Mandolin_nobg.png",
     "category": "Instrumento musical"
   },
   {
     "name": "Violin",
-    "image": "src/assets/items/Violin_nobg.png",
+    "image": "items/Violin_nobg.png",
     "category": "Instrumento musical"
   },
   {
     "name": "Globo terráqueo modelo 2",
-    "image": "src/assets/items/WorldGlobe2_nobg.png",
+    "image": "items/WorldGlobe2_nobg.png",
     "category": "Decorativo"
   },
   {
     "name": "Sombrero de playa",
-    "image": "src/assets/items/StrawHat4_nobg.png",
+    "image": "items/StrawHat4_nobg.png",
     "category": "Rack"
   },
   {
     "name": "Sombrero de playa pequeño",
-    "image": "src/assets/items/StrawHat2_nobg.png",
+    "image": "items/StrawHat2_nobg.png",
     "category": "Rack"
   },
   {
     "name": "Linterna",
-    "image": "src/assets/items/Flashlight_nobg.png",
+    "image": "items/Flashlight_nobg.png",
     "category": "Herramienta"
   },
   {
     "name": "Microfono",
-    "image": "src/assets/items/Microphone_nobg.png",
+    "image": "items/Microphone_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Lente de cámara",
-    "image": "src/assets/items/CameraLen_nobg.png",
+    "image": "items/CameraLen_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Telescopio",
-    "image": "src/assets/items/Telescope_nobg.png",
+    "image": "items/Telescope_nobg.png",
     "category": "Instrumento óptico"
   },
   {
     "name": "Globo terráqueo modelo 4",
-    "image": "src/assets/items/WorldGlobe.png",
+    "image": "items/WorldGlobe.png",
     "category": "Decorativo"
   },
   {
     "name": "Ukelele",
-    "image": "src/assets/items/Ukelele_nobg.png",
+    "image": "items/Ukelele_nobg.png",
     "category": "Instrumento musical"
   },
   {
     "name": "Guitarra acústica",
-    "image": "src/assets/items/Guitar_nobg.png",
+    "image": "items/Guitar_nobg.png",
     "category": "Instrumento musical"
   },
   {
     "name": "Globo terráqueo modelo 3",
-    "image": "src/assets/items/WorldGlobe3_nobg.png",
+    "image": "items/WorldGlobe3_nobg.png",
     "category": "Decorativo"
   },
   {
     "name": "Termómetro",
-    "image": "src/assets/items/Thermometer_nobg.png",
+    "image": "items/Thermometer_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Vaso descartable con bombilla",
-    "image": "src/assets/items/DisposableVaseClosed_nobg.png",
+    "image": "items/DisposableVaseClosed_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Cronómetro de ajedrez",
-    "image": "src/assets/items/ChessTimer_nobg.png",
+    "image": "items/ChessTimer_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Radio digital",
-    "image": "src/assets/items/DigitalRadio_nobg.png",
+    "image": "items/DigitalRadio_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Libro verde",
-    "image": "src/assets/items/GreenBook_nobg.png",
+    "image": "items/greenbook_nobg.png",
     "category": "Biblioteca"
   },
   {
     "name": "Agenda",
-    "image": "src/assets/items/Handbook_nobg.png",
+    "image": "items/HandBook_nobg.png",
     "category": "Biblioteca"
   },
   {
     "name": "Diario",
-    "image": "src/assets/items/Diary_nobg.png",
+    "image": "items/Diary_nobg.png",
     "category": "Biblioteca"
   },
   {
     "name": "Anotador",
-    "image": "src/assets/items/NotebookRing_nobg.png",
+    "image": "items/NotebookRing_nobg.png",
     "category": "Biblioteca"
   },
   {
     "name": "Vaso descartable",
-    "image": "src/assets/items/DisposableVase_nobg.png",
+    "image": "items/DisposableVase_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Vaso de café con sorbete",
-    "image": "src/assets/items/CoffeCupCover_nobg.png",
+    "image": "items/CoffeCupCover_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Vaso de café",
-    "image": "src/assets/items/CoffeeCup_nobg.png",
+    "image": "items/CoffeeCup_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Sombrero de gaucho",
-    "image": "src/assets/items/StrawHat1_nobg.png",
+    "image": "items/StrawHat1_nobg.png",
     "category": "Rack"
   },
   {
     "name": "Sombrero de paja",
-    "image": "src/assets/items/StrawHat3_nobg.png",
+    "image": "items/StrawHat3_nobg.png",
     "category": "Rack"
   },
   {
     "name": "Televisor",
-    "image": "src/assets/items/VintageTV_nobg.png",
+    "image": "items/VintageTV_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Cámara de seguridad",
-    "image": "src/assets/items/SecurityCamera_nobg.png",
+    "image": "items/SecurityCamera_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Parlante",
-    "image": "src/assets/items/Speaker_nobg.png",
+    "image": "items/Speaker_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Lentes VR",
-    "image": "src/assets/items/VRGlasses_nobg.png",
+    "image": "items/VRGlasses_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Anteojos",
-    "image": "src/assets/items/glasses_nobg.png",
+    "image": "items/glasses_nobg.png",
     "category": "Instrumento óptico"
   },
   {
     "name": "Lentes de sol",
-    "image": "src/assets/items/sunglasses_nobg.png",
+    "image": "items/Sunglasses_nobg.png",
     "category": "Instrumento óptico"
   },
   {
     "name": "Reloj versión 2",
-    "image": "src/assets/items/nobellClock_nobg.png",
+    "image": "items/nobellClock_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Balanza",
-    "image": "src/assets/items/balanceBoard_nobg.png",
+    "image": "items/balanceBoard_nobg.png",
     "category": "Herramienta"
   },
   {
     "name": "Brújula",
-    "image": "src/assets/items/compass_nobg.png",
+    "image": "items/compass_nobg.png",
     "category": "Herramienta"
   },
   {
     "name": "Reloj",
-    "image": "src/assets/items/Clock.png",
+    "image": "items/Clock.png",
     "category": "Electrónica"
   },
   {
     "name": "Radio versión 1",
-    "image": "src/assets/items/Radio_1.png",
+    "image": "items/Radio_1.png",
     "category": "Electrónica"
   },
   {
     "name": "Jarra nueva 2",
-    "image": "src/assets/items/jar2_nobg.png",
+    "image": "items/jar2_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Azucarera versión 2",
-    "image": "src/assets/items/jar3_nobg.png",
+    "image": "items/jar3_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Jarra nueva 1",
-    "image": "src/assets/items/jar1_nobg.png",
+    "image": "items/jar1_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Taza",
-    "image": "src/assets/items/mug2_nobg.png",
+    "image": "items/mug2_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Reloj digital",
-    "image": "src/assets/items/DigitalClock_nobg.png",
+    "image": "items/digitalclock_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Cámara de fotos",
-    "image": "src/assets/items/camera_nobg.png",
+    "image": "items/camera_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Cartera",
-    "image": "src/assets/items/Bag_nobg.png",
+    "image": "items/Bag_nobg.png",
     "category": "Vestimenta"
   },
   {
     "name": "Cafetera",
-    "image": "src/assets/items/CoffeePot_nobg.png",
+    "image": "items/CoffeePot_nobg.png",
     "category": "Vajilla"
   },
   {
     "name": "Auriculares",
-    "image": "src/assets/items/Headphones_nobg.png",
+    "image": "items/Headphones_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Teclado",
-    "image": "src/assets/items/Keyboard_nobg.png",
+    "image": "items/Keyboard_nobg.png",
     "category": "Instrumento musical"
   },
   {
     "name": "Telefono Inalambrico",
-    "image": "src/assets/items/RedPhone_nobg.png",
+    "image": "items/RedPhone_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Control remoto",
-    "image": "src/assets/items/remotecontroller_nobg.png",
+    "image": "items/remotecontroller_nobg.png",
     "category": "Electrónica"
   },
   {
     "name": "Cuaderno",
-    "image": "src/assets/items/SpringNotebook_nobg.png",
+    "image": "items/SpringNotebook_nobg.png",
     "category": "Biblioteca"
   }
 ]

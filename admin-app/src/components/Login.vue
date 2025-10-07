@@ -5,6 +5,9 @@
       <p v-if="error" class="center-element justify-center card bg-red-200">
         {{ error }}
       </p>
+      <div v-if="info" class="center-element justify-center card bg-green-200">
+        {{ info }}
+      </div>
     </div>
     <form @submit.prevent="login">
       <div class="login-input pt-4">
@@ -21,6 +24,12 @@
           required
         />
       </div>
+      <p
+        class="text-blue-800 underline cursor-pointer text-sm"
+        @click="sendResetEmail"
+      >
+        Olvidé mis credenciales
+      </p>
       <div class="center-element">
         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
       </div>
@@ -30,6 +39,7 @@
 
 <script setup>
 import { auth, signInWithEmailAndPassword, signOut } from "@/firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 import { getDatabase, ref as dbRef, get } from "firebase/database";
 import { useRouter } from "vue-router";
 import { ref } from "vue";
@@ -38,6 +48,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 const error = ref("");
+const info = ref("");
 
 const login = async () => {
   try {
@@ -80,8 +91,45 @@ const login = async () => {
     // Login exitoso, redirigir
     router.push({ name: "PatientList" });
   } catch (err) {
-    console.error(err); // Agrega para ver qué error da el login
+    console.error(err);
     error.value = "Correo o contraseña incorrectos";
   }
+};
+
+const sendResetEmail = async () => {
+  error.value = "";
+  info.value = "";
+
+  try {
+    const database = getDatabase();
+    const especialistasRef = dbRef(database, "especialista");
+    const snapshot = await get(especialistasRef);
+
+    if (!snapshot.exists()) {
+      error.value = "No se encontró ningún especialista registrado.";
+      return;
+    }
+
+    const especialistas = snapshot.val();
+    const first = Object.values(especialistas)[0];
+    const specialistEmail = first.mail;
+
+    await sendPasswordResetEmail(auth, specialistEmail);
+    info.value = `Se envió un email a ${maskEmail(
+      specialistEmail
+    )} con las credenciales.`;
+  } catch (err) {
+    console.error("Error enviando email:", err);
+    error.value = "No se pudo enviar el correo de recuperación.";
+  }
+};
+
+const maskEmail = (email) => {
+  const [name, domain] = email.split("@");
+  const maskedName =
+    name.length > 2
+      ? name[0] + "*".repeat(name.length - 2) + name[name.length - 1]
+      : name[0] + "*";
+  return `${maskedName}@${domain}`;
 };
 </script>

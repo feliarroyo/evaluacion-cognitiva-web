@@ -7,7 +7,7 @@
             Visualizar entorno virtual
           </button>
           <button class="btn btn-primary" @click="goToNewPatient">
-            Agregar Paciente
+            Agregar Usuario
           </button>
           <button class="btn btn-secondary" @click="logOut">
             Cerrar sesión
@@ -22,7 +22,7 @@
       >
         <div class="flex flex-col gap-3 w-full max-w-xl">
           <p v-if="loading" class="text-center text-gray-500">
-            Cargando pacientes...
+            Cargando usuarios...
           </p>
           <PatientRow
             v-for="pac in patients"

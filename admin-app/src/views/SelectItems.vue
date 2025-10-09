@@ -1,7 +1,7 @@
 <template>
   <div class="w-full p-6">
     <h2 class="text-2xl font-bold text-center mb-8">
-      Añadir objetos para el nivel de complejidad {{ complexityText }}
+      Seleccionar objetos para el nivel {{ complexityText }}
     </h2>
 
     <div class="grid grid-cols-2 gap-10">
@@ -208,25 +208,33 @@ const selections = reactive(getSelections(level, spawnZone, type) || {});
 
 const wallImages = {
   lowLevel: {
-    "Pared de entrada": import.meta.env.BASE_URL + "environmentSpawns/entradaNivel1.png",
-    "Centro del living": import.meta.env.BASE_URL + "environmentSpawns/centroNivel1.png",
-    "Pared opuesta": import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel1.png",
-    "Pared de la TV": import.meta.env.BASE_URL + "environmentSpawns/tvNivel1_Abierto.png",
+    "Pared de entrada":
+      import.meta.env.BASE_URL + "environmentSpawns/entradaNivel1.png",
+    "Centro del living":
+      import.meta.env.BASE_URL + "environmentSpawns/centroNivel1.png",
+    "Pared opuesta":
+      import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel1.png",
+    "Pared de la TV":
+      import.meta.env.BASE_URL + "environmentSpawns/tvNivel1_Abierto.png",
     Hall: import.meta.env.BASE_URL + "environmentSpawns/hall.png",
   },
   highLevel: {
-    "Pared de entrada": import.meta.env.BASE_URL + "environmentSpawns/entradaNivel2.png",
-    "Centro del living": import.meta.env.BASE_URL + "environmentSpawns/centroNivel2.png",
-    "Pared opuesta": import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel2.png",
-    "Pared de la TV": import.meta.env.BASE_URL + "environmentSpawns/tvNivel2_Abierto.png",
+    "Pared de entrada":
+      import.meta.env.BASE_URL + "environmentSpawns/entradaNivel2.png",
+    "Centro del living":
+      import.meta.env.BASE_URL + "environmentSpawns/centroNivel2.png",
+    "Pared opuesta":
+      import.meta.env.BASE_URL + "environmentSpawns/opuestoNivel2.png",
+    "Pared de la TV":
+      import.meta.env.BASE_URL + "environmentSpawns/tvNivel2_Abierto.png",
     Hall: import.meta.env.BASE_URL + "environmentSpawns/hall.png",
   },
 };
 
-const complexityText = computed(() => (level === "lowLevel" ? "baja" : "alta"));
+const complexityText = computed(() => (level === "lowLevel" ? "bajo" : "alto"));
 const wallImage =
   (wallImages[level] && wallImages[level][spawnZone]) ||
-  (import.meta.env.BASE_URL + "environment/Opposite.png");
+  import.meta.env.BASE_URL + "environment/Opposite.png";
 
 const availableSpawns = ref([]);
 const availableObjects = ref([]);

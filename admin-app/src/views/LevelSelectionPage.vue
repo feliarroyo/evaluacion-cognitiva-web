@@ -1,6 +1,6 @@
 <template>
   <div class="center-screen card w-full flex flex-col items-center">
-    <h2>Personalizar - Paciente: {{ patientName }}</h2>
+    <h2>Personalizar - Usuario: {{ patientName }}</h2>
 
     <div class="flex flex-col gap-4 items-center">
       <button

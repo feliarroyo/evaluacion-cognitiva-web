@@ -5,7 +5,7 @@ import autoTable from "jspdf-autotable";
  * Genera y descarga un informe en PDF o TXT usando los datos precalculados
  * @param {Object} playthrough - Datos de la partida, ya con métricas y tablas calculadas
  * @param {"pdf" | "txt"} format - Formato de salida
- * @param {Object} patientInfo - Información del paciente {name, email}
+ * @param {Object} patientInfo - Información del usuario {name, email}
  */
 
 function mapIdsToNames(logContent) {

@@ -62,7 +62,7 @@ const titulo = computed(() => {
     return "Definir configuración por defecto";
   }
   const nivelTxt = levelKey === "lowLevel" ? "Nivel Bajo" : "Nivel Alto";
-  return `Personalizar paciente: ${patientName} - ${nivelTxt}`;
+  return `Personalizar usuario: ${patientName} - ${nivelTxt}`;
 });
 
 const syncSelectionsToTempLevelsRealtime = () => {

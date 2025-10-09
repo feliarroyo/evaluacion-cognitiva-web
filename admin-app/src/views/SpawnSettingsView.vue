@@ -97,7 +97,7 @@ const saveSettings = () => {
   if (!levelSelections) return;
   const hallSearchObjects = getSearchObjects(level);
   if (hallSearchObjects.length === 0) {
-    alert("Debes seleccionar al menos un objeto en Hall");
+    alert("Debes seleccionar al menos un objeto a memorizar en el Hall");
     return;
   }
   for (const obj of hallSearchObjects) {
@@ -116,9 +116,7 @@ const saveSettings = () => {
       }
     }
     if (!assigned) {
-      alert(
-        `El objeto "${obj}" del Hall no está asignado a ninguna otra pared`
-      );
+      alert(`El objeto "${obj}" del Hall no está asignado en el living`);
       return;
     }
   }

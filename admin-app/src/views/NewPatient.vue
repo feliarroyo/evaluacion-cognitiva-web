@@ -24,14 +24,12 @@
       </div>
       <div class="btns-bar">
         <button type="button" class="btn btn-secondary" @click="goBack">
-          Volver a lista de pacientes
+          Volver a lista de usuarios
         </button>
         <!-- <button type="button" class="btn btn-secondary" @click="createLocales">
           Reset current admin
         </button> -->
-        <button type="submit" class="btn btn-primary">
-          Registrar paciente
-        </button>
+        <button type="submit" class="btn btn-primary">Registrar usuario</button>
       </div>
     </form>
 

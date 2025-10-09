@@ -245,6 +245,8 @@ const filteredAvailableObjects = computed(() => {
   Object.values(selections).forEach((obj) => usedObjects.delete(obj));
 
   return availableObjects.value.filter((obj) => {
+    if (spawnZone !== "Hall" && hallSearchObjects.value.has(obj.name))
+      return false;
     if (obj.category === "Rack" && spawnZone !== "Pared de entrada")
       return false;
     return !usedObjects.has(obj.name);
@@ -319,7 +321,14 @@ const hallSelectedNonRackObjects = computed(() => {
       const obj = availableObjects.value.find((o) => o.name === name);
       if (obj?.category === "Rack" && spawnZone !== "Pared de entrada")
         return null;
-      return obj?.category !== "Rack" ? obj : null;
+
+      if (!obj || obj.category === "Rack") return null;
+
+      const usedElsewhere = isHallObjectUsedElsewhere(level, obj.name);
+      return {
+        ...obj,
+        disabled: usedElsewhere,
+      };
     })
     .filter(Boolean);
 });
@@ -340,12 +349,29 @@ const hallObjectsToMemorize = computed(() => {
       if (obj.category === "Rack" && spawnZone !== "Pared de entrada")
         return null;
 
+      const levelSelections = selectionsByLevel[level];
+      let usedInOtherWalls = false;
+
+      if (levelSelections) {
+        for (const [zoneName, zoneData] of Object.entries(levelSelections)) {
+          if (zoneName === "Hall") continue;
+          const allObjects = [
+            ...Object.keys(zoneData.search || {}),
+            ...Object.keys(zoneData.distracting || {}),
+          ];
+          if (allObjects.includes(obj.name)) {
+            usedInOtherWalls = true;
+            break;
+          }
+        }
+      }
+
       const usedElsewhere = isHallObjectUsedElsewhere(level, obj.name);
 
       return {
         name: obj.name,
         img: obj.img || "/default.png",
-        disabled: usedElsewhere,
+        disabled: usedElsewhere || usedInOtherWalls,
       };
     })
     .filter(Boolean);

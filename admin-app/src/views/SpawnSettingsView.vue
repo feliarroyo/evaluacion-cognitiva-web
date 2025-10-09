@@ -74,7 +74,18 @@ const goToItemSelection = (spawnName, type) => {
 };
 
 const goBack = () => {
-  router.back();
+  if (
+    confirm(
+      "¿Seguro que quieres salir sin guardar? Se perderán todas las selecciones realizadas."
+    )
+  ) {
+    const level = route.query.level;
+    if (level && selectionsByLevel[level]) {
+      selectionsByLevel[level] = {};
+    }
+
+    router.back();
+  }
 };
 
 const getSelectionCount = (spawn) => {

@@ -17,18 +17,18 @@ Utiliza Vue.js como framework de frontend en conjunto con las tecnologías web e
 *   Para hacer esto, se utiliza una instancia aislada de Firebase Authentication para registrar el nuevo UID del paciente en los servidores sin cerrar ni comprometer la sesión web activa del administrador.
 *   Una vez que se crea el usuario, se clona la configuración de la tabla `globalLevelsConfig` en la base de datos.
 
-### Personalización remota del entorno de RV
+### Personalización remota de la actividad
 El administrador cuenta con un panel avanzado para alterar la complejidad de los niveles de forma independiente:
 *   Los tiempos de las etapas de memorización (`timeMem`) e identificación (`timeSearch`) son configurables.
 *   Los objetos son asignados a posiciones específicas, indicadas con imágenes del entorno duplas de tipo `<ubicación, objeto>`.
 *   **Discriminación de Estímulos:** Permite seleccionar qué elementos exactos se instanciarán en los estantes del hall (objetos a memorizar) y cuáles se distribuirán en el living (distinguiendo entre objetos a memorizar y distractores).
 *   Los cambios quedan fijos al presionar "Guardar", transmitiendo los nuevos nodos JSON configurados hacia Firebase para su sincronización remota con la aplicación móvil.
 
-### Referencia virtual Estática y Multimedia
+### Referencia virtual del ambiente
 *   Se permite visualizar imágenes de referencia de la disposición de cada parte del ambiente virtual.
 *   También se ofrece el video tutorial, a modo de referencia para el administrador de la actividad a realizar antes de diseñar un nivel personalizado.
 
-### Historial clínico, Auditoría y Exportación de Datos
+### Historial de usuarios
 *   En el historial de un usuario, se pueden ver todas las sesiones realizadas hasta el momento.
 *   Los datos calculados son estructurados en un informe, ofrecido en formato PDF o TXT.
 *   También se permite la descarga del log de estados realizado durante la actividad, en formato TXT. Este archivo permite reconstruir cronológicamente el desarrollo de la actividad.
